@@ -1,0 +1,8 @@
+21:49:30	INSERT INTO `testdb`.`usuario` (`username`, `password`) VALUES ('22fede22@gmail.com','123456789')	1 row(s) affected	0.000 sec
+
+
+INSERT INTO `testdb`.`usuario`
+(`username`,
+`password`)
+VALUES
+('admin@gmail.com','1234');
