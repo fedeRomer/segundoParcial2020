@@ -5,15 +5,30 @@ public class Usuario {
 	private int id;
 	private String username;
 	private String password;
+	private String perfil;
 
-	public Usuario(int id, String username, String password) {
+	public Usuario(int id, String username, String password, String perfil) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.perfil = perfil;
 	}
+	
+	
 
 	public Usuario() {
+		super();
+	}
+
+
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
 	}
 
 	public int getId() {
