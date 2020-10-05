@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import negocio.dto.Camiones;
 import negocio.dto.Usuario;
 import util.MySQL;
 
@@ -87,36 +88,53 @@ public class testMySQLConn {
 	}
 
 	@Test
-	public void insertIntoUsuario() {
+	public void insertInto()  {
+		
+		Camiones o = new Camiones();
+		o.setMarca("Scania");
+		o.setModelo("R 2012");
+		o.setDominio("I3IYF29");
+		o.setCategoria(5);
+		o.setCargaMaximaTn(16);
+		o.setLitrosTanque(1400);
+		o.setConsumoLitrosKm(10);
+//		o.setIdCamiones(1);
 		PreparedStatement preparedStatement;
+		CallableStatement callableStatement;
 		String query;
 		Connection connection;
-		String username = "22fede22@gmail.com";
-		String password = "123456789";
-
+		Statement statement;
+		
+		MySQL mySQL = new MySQL();
+		connection = mySQL.getConnection();
+		query = "INSERT INTO camiones ("
+				+ "marca,modelo,dominio,categoria,carga_maxima_tn,litros_tanque,consumo_litros_km"
+				+ ") "
+				+ "VALUES("
+				+ "?,?,?,?,?,?,?"
+				+ ") ";
 		try {
 
-			MySQL mySQL = new MySQL();
-			connection = mySQL.getConnection();
-			query = "insert into usuario" + "(username,password) " + "values(?,?)";
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, username);
-			preparedStatement.setString(2, password);
-			
-		    int resultSet=preparedStatement.executeUpdate();
-	        if(resultSet==1) {
-	        	preparedStatement.close();
-	            connection.close();
-	        }else {
-	        	preparedStatement.close();
-	            connection.close();
-	            fail("error en preparedStatement dentro de resultset");
-	        }
-	        
+			preparedStatement.setString(1, o.getMarca());
+			preparedStatement.setString(2, o.getModelo());
+			preparedStatement.setString(3, o.getDominio());
+			preparedStatement.setInt(4, o.getCategoria());
+			preparedStatement.setInt(5, o.getCargaMaximaTn());
+			preparedStatement.setInt(6, o.getLitrosTanque());
+			preparedStatement.setInt(7, o.getConsumoLitrosKm());
+			//preparedStatement.setInt(8, o.getIdCamiones());
+			int resultSet = preparedStatement.executeUpdate();
+			if (resultSet == 1) {
+				preparedStatement.close();
+				connection.close();
+			} else {
+				preparedStatement.close();
+				connection.close();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }

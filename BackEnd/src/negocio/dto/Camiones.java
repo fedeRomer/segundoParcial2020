@@ -9,9 +9,10 @@ public class Camiones {
 	private int categoria;
 	private int cargaMaximaTn;
 	private int litrosTanque;
+	private int consumoLitrosKm;
 
 	public Camiones(int idCamiones, String marca, String modelo, String dominio, int categoria, int cargaMaximaTn,
-			int litrosTanque) {
+			int litrosTanque, int consumoLitrosKm) {
 		super();
 		this.idCamiones = idCamiones;
 		this.marca = marca;
@@ -20,6 +21,7 @@ public class Camiones {
 		this.categoria = categoria;
 		this.cargaMaximaTn = cargaMaximaTn;
 		this.litrosTanque = litrosTanque;
+		this.consumoLitrosKm = consumoLitrosKm;
 	}
 
 	public Camiones() {
@@ -80,6 +82,14 @@ public class Camiones {
 
 	public void setLitrosTanque(int litrosTanque) {
 		this.litrosTanque = litrosTanque;
+	}
+
+	public int getConsumoLitrosKm() {
+		return consumoLitrosKm;
+	}
+
+	public void setConsumoLitrosKm(int consumoLitrosKm) {
+		this.consumoLitrosKm = consumoLitrosKm;
 	}
 
 }

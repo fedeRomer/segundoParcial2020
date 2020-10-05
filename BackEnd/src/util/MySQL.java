@@ -15,7 +15,7 @@ public class MySQL {
 
 	public MySQL() {
 		Properties properties = new Properties();
-		//tomar desde properties
+		//TODO: tomar desde properties
 
 		this.driver = "com.mysql.jdbc.Driver";
 		this.url = "jdbc:mysql://localhost/testdb";

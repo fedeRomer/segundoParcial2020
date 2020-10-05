@@ -1,20 +1,21 @@
 package negocio.dto;
 
+import java.sql.Date;
 import java.util.Calendar;
 
-public class Choferes extends Usuario {
+public class Choferes {
 
 	private int idChoferes;
 	private String nombre;
 	private String apellido;
 	private int dni;
-	private Calendar fechaDeNacimiento;
+	private Date fechaDeNacimiento;
 	private int categoria;
 	private String telefono;
 
-	public Choferes(int id, String username, String password, String perfil, int idChoferes, String nombre,
-			String apellido, int dni, Calendar fechaDeNacimiento, int categoria, String telefono) {
-		super(id, username, password, perfil);
+	public Choferes(int idChoferes, String nombre,
+			String apellido, int dni, Date fechaDeNacimiento, int categoria, String telefono) {
+		super();
 		this.idChoferes = idChoferes;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -24,9 +25,6 @@ public class Choferes extends Usuario {
 		this.telefono = telefono;
 	}
 	
-	public Choferes(int id, String username, String password, String perfil) {
-		super(id, username, password, perfil);
-	}
 	
 	public Choferes() {
 		super();
@@ -65,12 +63,12 @@ public class Choferes extends Usuario {
 		this.dni = dni;
 	}
 
-	public Calendar getFechaDeNacimiento() {
+	public Date getFechaDeNacimiento() {
 		return fechaDeNacimiento;
 	}
 
-	public void setFechaDeNacimiento(Calendar fechaDeNacimiento) {
-		this.fechaDeNacimiento = fechaDeNacimiento;
+	public void setFechaDeNacimiento(Date date) {
+		this.fechaDeNacimiento = date;
 	}
 
 	public int getCategoria() {
