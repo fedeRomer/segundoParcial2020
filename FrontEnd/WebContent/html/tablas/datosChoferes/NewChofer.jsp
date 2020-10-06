@@ -41,7 +41,7 @@
 <header>
 
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="http://localhost:8080/FrontEnd">Navbar</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
@@ -61,9 +61,12 @@
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> Viajes </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">Destinos</a> <a
-							class="dropdown-item" href="#">Categorias</a> <a
-							class="dropdown-item" href="#">Tabla de distancias</a>
+						<a class="dropdown-item" href="http://localhost:8080/FrontEnd/DestinosController">Destinos</a> <a
+							class="dropdown-item" href="http://localhost:8080/FrontEnd/CategoriasController">Categorias</a> 
+							<a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Tabla de distancias</a>
+							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Administrador)</a>
+							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Chofer)</a>
+							
 					</div></li>
 			</ul>
 		</div>
@@ -89,7 +92,7 @@
 					</tr>
 					<tr>
 						<td>Dni</td>
-						<td><input type="number" name="dni" required></td>
+						<td><input type="number" name="dni" min="1" max="99999999" required></td>
 					</tr>
 					<tr>
 						<td>Fecha de nacimiento</td>
@@ -97,7 +100,7 @@
 					</tr>
 					<tr>
 						<td>Categoria</td>
-						<td><input type="number" name="categoria" required></td>
+						<td><input type="number" name="categoria" min="1" max="5" required></td>
 					</tr>
 					<tr>
 						<td>Telefono</td>

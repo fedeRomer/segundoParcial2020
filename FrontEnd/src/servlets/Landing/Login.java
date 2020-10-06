@@ -29,14 +29,12 @@ public class Login extends HttpServlet {
 	 */
 	public Login() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -45,7 +43,6 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String value = request.getParameter("button");
 		if (value.equalsIgnoreCase("ingresar")) {
 			// redireccionar a login html
@@ -63,7 +60,6 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		UsuarioDAO usuarioDAO = UsuarioDAOFactory.get("database");
 		String user = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -73,6 +69,11 @@ public class Login extends HttpServlet {
 			if (usuario.getUsername() != null && usuario.getPassword() != null) {
 				Cookie loginCookie = new Cookie("user", user);
 				loginCookie.setMaxAge(30 * 60);
+				//TODO: urgente cookies
+				/*
+				 * añadir un cookie.setValue(chofer o admin)
+				 * despues en controller validar antes de entrar a X pagina y restringir o autorizar segun value equals chofer admin
+				 */
 				response.addCookie(loginCookie);
 				response.sendRedirect("http://localhost:8080/FrontEnd/html/LoginSuccess.jsp");
 				// https://www.journaldev.com/1907/java-session-management-servlet-httpsession-url-rewriting
@@ -81,7 +82,6 @@ public class Login extends HttpServlet {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}

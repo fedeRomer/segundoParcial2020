@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Choferes</title>
+<title>Viajes</title>
 
 <!-- CSS only -->
 <link rel="stylesheet"
@@ -30,18 +30,17 @@
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
 <link
-	href="${pageContext.request.contextPath}/html/tablas/datosChoferes/datatableStyle.css"
+	href="${pageContext.request.contextPath}/html/tablas/datosViajes/datatableStyle.css"
 	rel="stylesheet">
 </head>
 <script type="text/javascript">
-$(document).ready(function() {
-    $('#datatable').DataTable();
-} );
-
+	$(document).ready(function() {
+		$('#datatable').DataTable();
+	});
 </script>
+</head>
 
 <header>
-
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="http://localhost:8080/FrontEnd">Navbar</a>
@@ -78,17 +77,17 @@ $(document).ready(function() {
 <body>
 
 
-	<h1>Lista de choferes</h1>
+	<h1>Lista de viajes</h1>
 
 	<table id="datatable" class="table table-striped table-bordered table-sm" style="width:100%">
 		<tr>
-			<td style="color: black">Nombre</td>
-			<td style="color: black">Apellido</td>
-			<td style="color: black">Dni</td>
-			<td style="color: black">Fecha de nacimiento</td>
-			<td style="color: black">Categoria</td>
-			<td style="color: black">Telefono</td>
-			<td style="color: black" colspan=2>Opciones</td>
+			<td style="color: black">Chofer</td>
+			<td style="color: black">Camión</td>
+			<td style="color: black">Origen</td>
+			<td style="color: black">Destino</td>
+			<td style="color: black">Distancia</td>
+			<td style="color: black">Tiempo de Viaje</td>
+			<td style="color: black">Tanques De combustible</td>
 		</tr>
 
 		<c:forEach var="choferes" items="${lista}">
@@ -109,8 +108,9 @@ $(document).ready(function() {
             </form>
 		</c:forEach>
 		
-	</table>
-<a href="http://localhost:8080/FrontEnd/html/tablas/datosChoferes/NewChofer.jsp" class="btn btn-primary my-2">Añadir Chofer</a>
+	</table> 
+<a href="http://localhost:8080/FrontEnd/html/tablas/datosViajes/NewViaje.jsp" class="btn btn-primary my-2">Añadir Nuevo Viaje</a>
+
 
 
 </body>

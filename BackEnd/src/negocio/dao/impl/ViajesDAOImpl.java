@@ -21,22 +21,18 @@ public class ViajesDAOImpl implements ViajesDAO{
 	
 	@Override
 	public Boolean addViaje(Viajes o) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public Boolean modifyViaje(Viajes o) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public Viajes searchViaje(Viajes o) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public List<Viajes> getViajes() throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

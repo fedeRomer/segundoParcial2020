@@ -21,7 +21,7 @@
 <header>
 
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="http://localhost:8080/FrontEnd">Navbar</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
@@ -33,17 +33,20 @@
 				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/FrontEnd">Inicio
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Choferes</a>
+				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/ChoferesController">Choferes</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/TestController">Camiones</a></li>
+				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/CamionesController">Camiones</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> Viajes </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">Destinos</a> <a
-							class="dropdown-item" href="#">Categorias</a> <a
-							class="dropdown-item" href="#">Tabla de distancias</a>
+						<a class="dropdown-item" href="http://localhost:8080/FrontEnd/DestinosController">Destinos</a> <a
+							class="dropdown-item" href="http://localhost:8080/FrontEnd/CategoriasController">Categorias</a> 
+							<a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Tabla de distancias</a>
+							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Administrador)</a>
+							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Chofer)</a>
+							
 					</div></li>
 			</ul>
 		</div>
@@ -51,32 +54,17 @@
 </header>
 
 <body>
-
-
     <h1>Lista de destinos</h1>
-    <table>
+    <table id="datatable" class="table table-striped table-bordered table-sm" width="100%">
         <tr>
-            <!-- <td><a href="Admincontroler?action=index">Volver al menú</a></td> -->
-        </tr>
-
-    </table>
-
-    <table border="1" width="100%">
-        <tr>
-            <td style="color:white">Destinos disponibles</td>
-            <td colspan=2>Opciones</td>
+            <td bgcolor="lightblue">Destinos disponibles</td>
         </tr>
 
         <c:forEach var="destinos" items="${lista}">
             <tr>
-                <td style="color:white"><c:out value="${destinos.destino}" /></td>
-               <!--   <td><a href="Admincontroler?action=eliminar&dni=<c:out value="${chofer.dni}"/>">Eliminar</a></td>
-                <td><a href="vistas/modificar.jsp">Modificar</a></td>
-				-->
+                <td bgcolor="lightblue"><c:out value="${destinos.provincia}" /></td>
             </tr>
         </c:forEach>
     </table>
-
-
 </body>
 </html>

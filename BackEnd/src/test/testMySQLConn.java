@@ -172,7 +172,7 @@ public class testMySQLConn {
 		}
 	}
 	*/
-	
+	/*
 	@Test
 	public void insertInto() throws SQLException  {
 		
@@ -209,6 +209,31 @@ public class testMySQLConn {
 		preparedStatement.setString(4, chofer.getFechaDeNacimiento());
 		preparedStatement.setInt(5, chofer.getCategoria());
 		preparedStatement.setString(6, chofer.getTelefono());
+		int resultSet = preparedStatement.executeUpdate();
+		if (resultSet == 1) {
+			preparedStatement.close();
+			connection.close();
+			System.out.println("ok");
+		} else {
+			preparedStatement.close();
+			connection.close();
+			System.out.println("no ok");
+		}
+	}*/
+	@Test
+	public void insertIntoProv() throws SQLException {
+		// INSERT INTO provincias (provincia) VALUES (?);
+		PreparedStatement preparedStatement;
+		CallableStatement callableStatement;
+		String query;
+		Connection connection;
+		Statement statement;
+		
+		MySQL mySQL = new MySQL();
+		connection = mySQL.getConnection();
+		query = "INSERT INTO provincias (provincia) VALUES (?)";
+		preparedStatement = connection.prepareStatement(query);
+		preparedStatement.setString(1, "Neuquen");
 		int resultSet = preparedStatement.executeUpdate();
 		if (resultSet == 1) {
 			preparedStatement.close();

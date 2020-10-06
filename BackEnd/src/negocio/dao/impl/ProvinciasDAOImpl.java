@@ -45,8 +45,8 @@ public class ProvinciasDAOImpl implements ProvinciasDAO {
 		ResultSet resultSet = preparedStatement.executeQuery();
 		Provincias provincia = new Provincias();
 		while (resultSet.next()) {
-			provincia.setIdProvincia(resultSet.getInt(0));
-			provincia.setProvincia(resultSet.getString(1));
+			provincia.setIdProvincia(resultSet.getInt(1));
+			provincia.setProvincia(resultSet.getString(2));
 		}
 		resultSet.close();
 		preparedStatement.close();
@@ -64,8 +64,8 @@ public class ProvinciasDAOImpl implements ProvinciasDAO {
 		List<Provincias> provinciasList = new ArrayList<>();
 		while (resultSet.next()) {
 			Provincias p = new Provincias();
-			p.setIdProvincia(resultSet.getInt(0));
-			p.setProvincia(resultSet.getString(1));
+			p.setIdProvincia(resultSet.getInt(1));
+			p.setProvincia(resultSet.getString(2));
 			provinciasList.add(p);
 		}
 		resultSet.close();

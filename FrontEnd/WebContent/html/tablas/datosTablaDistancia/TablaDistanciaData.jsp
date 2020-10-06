@@ -32,7 +32,7 @@
 <header>
 
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="http://localhost:8080/FrontEnd">Navbar</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
@@ -41,22 +41,23 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link"
-					href="http://localhost:8080/FrontEnd">Inicio <span
-						class="sr-only">(current)</span>
+				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/FrontEnd">Inicio
+						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Choferes</a>
+				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/ChoferesController">Choferes</a>
 				</li>
-				<li class="nav-item"><a class="nav-link"
-					href="http://localhost:8080/FrontEnd/TestController">Camiones</a></li>
+				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/CamionesController">Camiones</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownMenuLink" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> Viajes </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">Destinos</a> <a
-							class="dropdown-item" href="#">Categorias</a> <a
-							class="dropdown-item" href="#">Tabla de distancias</a>
+						<a class="dropdown-item" href="http://localhost:8080/FrontEnd/DestinosController">Destinos</a> <a
+							class="dropdown-item" href="http://localhost:8080/FrontEnd/CategoriasController">Categorias</a> 
+							<a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Tabla de distancias</a>
+							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Administrador)</a>
+							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Chofer)</a>
+							
 					</div></li>
 			</ul>
 		</div>
@@ -67,42 +68,108 @@
 
 
 	<h1>Tabla de distancias</h1>
-	<table>
+
+	<table id="datatable" class="table table-striped table-bordered table-sm" width="100%">
 		<tr>
-			<!-- <td><a href="Admincontroler?action=index">Volver al menú</a></td> -->
+			<td  bgcolor="lightblue"></td>
+			<td  bgcolor="lightblue">Ciudad Autónoma de Buenos Aires</td>
+			<td  bgcolor="lightblue">Córdoba</td>
+			<td  bgcolor="lightblue">Corrientes</td>
+			<td  bgcolor="lightblue">Formosa</td>
+			<td  bgcolor="lightblue">La Plata</td>
+			<td  bgcolor="lightblue">La Rioja</td>
+			<td  bgcolor="lightblue">Mendoza</td>
+			<td  bgcolor="lightblue">Neuquén</td>
 		</tr>
 
-	</table>
-
-	<table border="1" width="100%">
-		<tr>
-			<td style="color:white">--------</td>
-			<td style="color:white">Ciudad Autónoma de Buenos Aires</td>
-			<td style="color:white">Córdoba</td>
-			<td style="color:white">Corrientes</td>
-			<td style="color:white">Formosa</td>
-			<td style="color:white">La Plata</td>
-			<td style="color:white">La Rioja</td>
-			<td style="color:white">Mendoza</td>
-			<td style="color:white">Neuquén</td>
-			<td style="color:white"  colspan=2>Opciones</td>
-		</tr>
-
-		<c:forEach var="distancias" items="${lista}">
 			<tr>
-				<td style="color:white">--------</td>
-				<td style="color:white"><c:out value="${distancias.caba}" /></td>
-				<td style="color:white"><c:out value="${distancias.cord}" /></td>
-				<td style="color:white"><c:out value="${distancias.corr}" /></td>
-				<td style="color:white"><c:out value="${distancias.form}" /></td>
-				<td style="color:white"><c:out value="${distancias.lapl}" /></td>
-				<td style="color:white"><c:out value="${distancias.mend}" /></td>
-				<td style="color:white"><c:out value="${distancias.neuq}" /></td>
-				<!--   <td><a href="Admincontroler?action=eliminar&dni=<c:out value="${chofer.dni}"/>">Eliminar</a></td>
-                <td><a href="vistas/modificar.jsp">Modificar</a></td>
-				-->
+				<td bgcolor="lightblue">Ciudad Autónoma de Buenos Aires</td>
+                <td bgcolor="lightblue"> </td>
+                <td bgcolor="lightblue">646</td>
+                <td bgcolor="lightblue">792</td>
+                <td bgcolor="lightblue">933</td>
+                <td bgcolor="lightblue">53</td>
+                <td bgcolor="lightblue">986</td>
+                <td bgcolor="lightblue">985</td>
+                <td bgcolor="lightblue">989</td>
 			</tr>
-		</c:forEach>
+			<tr>
+				<td bgcolor="lightblue">Córdoba</td>
+                <td bgcolor="lightblue">646</td>
+                <td bgcolor="lightblue"> </td>
+                <td bgcolor="lightblue">677</td>
+                <td bgcolor="lightblue">824</td>
+                <td bgcolor="lightblue">698</td>
+                <td bgcolor="lightblue">340</td>
+                <td bgcolor="lightblue">466</td>
+                <td bgcolor="lightblue">907</td>
+			</tr>
+			<tr>
+				<td bgcolor="lightblue">Corrientes</td>
+                <td bgcolor="lightblue">792</td>
+                <td bgcolor="lightblue">677</td>
+                <td bgcolor="lightblue"> </td>
+                <td bgcolor="lightblue">157</td>
+                <td bgcolor="lightblue">830</td>
+                <td bgcolor="lightblue">814</td>
+                <td bgcolor="lightblue">1131</td>
+                <td bgcolor="lightblue">1534</td>
+			</tr>
+			<tr>
+				<td bgcolor="lightblue">Formosa</td>
+                <td bgcolor="lightblue">933</td>
+                <td bgcolor="lightblue">824</td>
+                <td bgcolor="lightblue">157</td>
+                <td bgcolor="lightblue"> </td>
+                <td bgcolor="lightblue">968</td>
+                <td bgcolor="lightblue">927</td>
+                <td bgcolor="lightblue">1269</td>
+                <td bgcolor="lightblue">1690</td>
+			</tr>
+			<tr>
+				<td bgcolor="lightblue">La Plata</td>
+                <td bgcolor="lightblue">53</td>
+                <td bgcolor="lightblue">698</td>
+                <td bgcolor="lightblue">830</td>
+                <td bgcolor="lightblue">968</td>
+                <td bgcolor="lightblue"> </td>
+                <td bgcolor="lightblue">1038</td>
+                <td bgcolor="lightblue">1029</td>
+                <td bgcolor="lightblue">1005</td>
+			</tr>
+			<tr>
+				<td bgcolor="lightblue">La Rioja</td>
+                <td bgcolor="lightblue">986</td>
+                <td bgcolor="lightblue">340</td>
+                <td bgcolor="lightblue">814</td>
+                <td bgcolor="lightblue">927</td>
+                <td bgcolor="lightblue">1038</td>
+                <td bgcolor="lightblue"> </td>
+                <td bgcolor="lightblue">427</td>
+                <td bgcolor="lightblue">1063</td>
+			</tr>
+			<tr>
+				<td bgcolor="lightblue">Mendoza</td>
+                <td bgcolor="lightblue">985</td>
+                <td bgcolor="lightblue">466</td>
+                <td bgcolor="lightblue">1131</td>
+                <td bgcolor="lightblue">1269</td>
+                <td bgcolor="lightblue">1029</td>
+                <td bgcolor="lightblue">427</td>
+                <td bgcolor="lightblue"> </td>
+                <td bgcolor="lightblue">676</td>
+			</tr>
+			<tr>
+				<td bgcolor="lightblue">Neuquén</td>
+                <td bgcolor="lightblue">989</td>
+                <td bgcolor="lightblue">907</td>
+                <td bgcolor="lightblue">1534</td>
+                <td bgcolor="lightblue">1690</td>
+                <td bgcolor="lightblue">1005</td>
+                <td bgcolor="lightblue">1063</td>
+                <td bgcolor="lightblue">676</td>
+                <td bgcolor="lightblue"> </td>
+			</tr>
 	</table>
 
 

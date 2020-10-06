@@ -11,3 +11,6 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+form {
+    display: inline-block;
+}

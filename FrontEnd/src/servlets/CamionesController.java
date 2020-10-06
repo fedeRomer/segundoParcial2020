@@ -36,14 +36,12 @@ public class CamionesController extends HttpServlet {
 	 */
 	public CamionesController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 	/**
