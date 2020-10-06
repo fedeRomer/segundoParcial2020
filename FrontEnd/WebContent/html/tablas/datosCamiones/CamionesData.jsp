@@ -41,7 +41,7 @@ $(document).ready(function() {
 				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/FrontEnd">Inicio
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Choferes</a>
+				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/ChoferesController">Choferes</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/CamionesController">Camiones</a></li>
 				<li class="nav-item dropdown"><a

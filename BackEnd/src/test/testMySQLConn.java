@@ -4,18 +4,22 @@ import static org.junit.Assert.*;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.junit.Test;
 
 import negocio.dto.Camiones;
+import negocio.dto.Choferes;
 import negocio.dto.Usuario;
 import util.MySQL;
 
@@ -117,7 +121,7 @@ public class testMySQLConn {
 		//return camionesList;
 	
 	}
-
+/*
 	@Test
 	public void insertInto()  {
 		
@@ -165,6 +169,55 @@ public class testMySQLConn {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	*/
+	
+	@Test
+	public void insertInto() throws SQLException  {
+		
+		Calendar c = Calendar.getInstance();
+		c.clear();
+		c.set(Calendar.YEAR, 1996);
+		c.set(Calendar.MONTH, 0);
+		c.set(Calendar.DATE, 15);
+		java.util.Date utilDate = c.getTime();
+
+		Choferes chofer = new Choferes();
+		chofer.setNombre("Test");
+		chofer.setApellido("apellido test");
+		chofer.setDni(38555654);
+		chofer.setFechaDeNacimiento("15-02-1996");
+		chofer.setCategoria(5);
+		chofer.setTelefono("1156468996");
+		
+//		o.setIdCamiones(1);
+		PreparedStatement preparedStatement;
+		CallableStatement callableStatement;
+		String query;
+		Connection connection;
+		Statement statement;
+		
+		MySQL mySQL = new MySQL();
+		connection = mySQL.getConnection();
+		query = "INSERT INTO choferes (" + "nombre,apellido,dni,fecha_de_nacimiento,categoria,telefono" + ") "
+				+ "VALUES(" + "?,?,?,?,?,?" + ") ";
+		preparedStatement = connection.prepareStatement(query);
+		preparedStatement.setString(1, chofer.getNombre());
+		preparedStatement.setString(2, chofer.getApellido());
+		preparedStatement.setInt(3, chofer.getDni());
+		preparedStatement.setString(4, chofer.getFechaDeNacimiento());
+		preparedStatement.setInt(5, chofer.getCategoria());
+		preparedStatement.setString(6, chofer.getTelefono());
+		int resultSet = preparedStatement.executeUpdate();
+		if (resultSet == 1) {
+			preparedStatement.close();
+			connection.close();
+			System.out.println("ok");
+		} else {
+			preparedStatement.close();
+			connection.close();
+			System.out.println("no ok");
 		}
 	}
 

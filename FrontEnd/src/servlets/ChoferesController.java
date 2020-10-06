@@ -45,7 +45,7 @@ public class ChoferesController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("html/tablas/datosCamiones/CamionesData.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("html/tablas/datosChoferes/ChoferesData.jsp");
 		List<Choferes> choferes = new ArrayList<Choferes>();
 		ChoferesDAO choferDAO = ChoferesDAOFactory.get("database");
 		try {
@@ -88,7 +88,7 @@ public class ChoferesController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
+		response.sendRedirect("http://localhost:8080/FrontEnd/ChoferesController");
 	}
 
 	protected void addChofer(HttpServletRequest request, HttpServletResponse response)
@@ -98,7 +98,7 @@ public class ChoferesController extends HttpServlet {
 		chofer.setNombre(request.getParameter("nombre"));
 		chofer.setApellido(request.getParameter("apellido"));
 		chofer.setDni(Integer.parseInt(request.getParameter("dni")));
-		chofer.setFechaDeNacimiento(Date.valueOf(request.getParameter("fechaDeNacimiento")));
+		chofer.setFechaDeNacimiento(request.getParameter("fechaDeNacimiento"));
 		chofer.setCategoria(Integer.parseInt(request.getParameter("categoria")));
 		chofer.setTelefono(request.getParameter("telefono"));
 
@@ -117,7 +117,7 @@ public class ChoferesController extends HttpServlet {
 		chofer.setNombre(request.getParameter("nombre"));
 		chofer.setApellido(request.getParameter("apellido"));
 		chofer.setDni(Integer.parseInt(request.getParameter("dni")));
-		chofer.setFechaDeNacimiento(Date.valueOf(request.getParameter("fechaDeNacimiento")));
+		chofer.setFechaDeNacimiento(request.getParameter("fechaDeNacimiento"));
 		chofer.setCategoria(Integer.parseInt(request.getParameter("categoria")));
 		chofer.setTelefono(request.getParameter("telefono"));
 
@@ -139,14 +139,18 @@ public class ChoferesController extends HttpServlet {
 
 	protected void getChofer(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("html/tablas/datosChoferes/ChoferesData.jsp");
 		Choferes chofer = new Choferes();
 		chofer.setDni(Integer.parseInt(request.getParameter("dni")));
-		
-		if (this.choferDAO.searchChofer(chofer)) {
-			System.err.println("ok delete");
-		} else {
-			System.err.println("no ok");
+		List<Choferes> choferes = new ArrayList<Choferes>();
+		try {
+			choferes.add(choferDAO.searchChofer(chofer));
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+
+		request.setAttribute("lista", choferes);
+		dispatcher.forward(request, response);
 	}
 
 }

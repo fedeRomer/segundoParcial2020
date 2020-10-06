@@ -4,6 +4,7 @@ import static org.junit.Assert.fail;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +33,7 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 		preparedStatement.setString(1, o.getNombre());
 		preparedStatement.setString(2, o.getApellido());
 		preparedStatement.setInt(3, o.getDni());
-		preparedStatement.setDate(4, o.getFechaDeNacimiento());
+		preparedStatement.setString(4, o.getFechaDeNacimiento());
 		preparedStatement.setInt(5, o.getCategoria());
 		preparedStatement.setString(6, o.getTelefono());
 		int resultSet = preparedStatement.executeUpdate();
@@ -58,11 +59,11 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 		preparedStatement.setString(1, o.getNombre());
 		preparedStatement.setString(2, o.getApellido());
 		preparedStatement.setInt(3, o.getDni());
-		preparedStatement.setDate(4, o.getFechaDeNacimiento());
+		preparedStatement.setString(4, o.getFechaDeNacimiento());
 		preparedStatement.setInt(5, o.getCategoria());
 		preparedStatement.setString(6, o.getTelefono());
 		preparedStatement.setInt(7, o.getIdChoferes());
-		int resultSet = preparedStatement.executeUpdate(query);
+		int resultSet = preparedStatement.executeUpdate();
 		if (resultSet == 1) {
 			preparedStatement.close();
 			connection.close();
@@ -88,7 +89,7 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 			chofer.setNombre(resultSet.getString(2));
 			chofer.setApellido(resultSet.getString(3));
 			chofer.setDni(resultSet.getInt(4));
-			chofer.setFechaDeNacimiento(resultSet.getDate(5));
+			chofer.setFechaDeNacimiento(resultSet.getString(5));
 			chofer.setCategoria(resultSet.getInt(6));
 			chofer.setTelefono(resultSet.getString(7));
 		}
@@ -112,7 +113,7 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 			chofer.setNombre(resultSet.getString(2));
 			chofer.setApellido(resultSet.getString(3));
 			chofer.setDni(resultSet.getInt(4));
-			chofer.setFechaDeNacimiento(resultSet.getDate(5));
+			chofer.setFechaDeNacimiento(resultSet.getString(5));
 			chofer.setCategoria(resultSet.getInt(6));
 			chofer.setTelefono(resultSet.getString(7));
 			choferesList.add(chofer);

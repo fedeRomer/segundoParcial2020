@@ -28,7 +28,7 @@ $(document).ready(function() {
 <header>
 
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="http://localhost:8080/FrontEnd">Navbar</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
@@ -40,7 +40,7 @@ $(document).ready(function() {
 				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/FrontEnd">Inicio
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Choferes</a>
+				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/ChoferesController">Choferes</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/CamionesController">Camiones</a></li>
 				<li class="nav-item dropdown"><a

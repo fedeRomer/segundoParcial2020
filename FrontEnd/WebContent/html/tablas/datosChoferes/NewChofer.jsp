@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Choferes</title>
-
+<title>Añadir Chofer</title>
 <!-- CSS only -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -32,7 +29,14 @@
 <link
 	href="${pageContext.request.contextPath}/html/tablas/datosChoferes/datatableStyle.css"
 	rel="stylesheet">
+
 </head>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#datatable').DataTable();
+	});
+</script>
 
 <header>
 
@@ -68,41 +72,50 @@
 
 <body>
 
+	<form action="http://localhost:8080/FrontEnd/ChoferesController"
+		method="post" id="form">
 
-	<h1>Lista de choferes</h1>
 
-	<table id="datatable" class="table table-striped table-bordered table-sm" style="width:100%">
-		<tr>
-			<td style="color: black">Nombre</td>
-			<td style="color: black">Apellido</td>
-			<td style="color: black">Dni</td>
-			<td style="color: black">Fecha de nacimiento</td>
-			<td style="color: black">Categoria</td>
-			<td style="color: black">Telefono</td>
-			<td style="color: black" colspan=2>Opciones</td>
-		</tr>
+		<dl>
+			<dd>
+				<table border="1">
+					<tr>
+						<td>Nombre</td>
+						<td><input type="text" name="nombre" required></td>
+					</tr>
+					<tr>
+						<td>Apellido</td>
+						<td><input type="text" name="apellido" required></td>
+					</tr>
+					<tr>
+						<td>Dni</td>
+						<td><input type="number" name="dni" required></td>
+					</tr>
+					<tr>
+						<td>Fecha de nacimiento</td>
+						<td><input type="text" name="fechaDeNacimiento" required></td>
+					</tr>
+					<tr>
+						<td>Categoria</td>
+						<td><input type="number" name="categoria" required></td>
+					</tr>
+					<tr>
+						<td>Telefono</td>
+						<td><input type="text" name="telefono" required></td>
+					</tr>
+					<tr>
+						<td><input type="button" class="btn btn-primary"
+							value="Volver" onclick="history.back()"></td>
 
-		<c:forEach var="choferes" items="${lista}">
-		<form action="http://localhost:8080/FrontEnd/ChoferesController" method="post" id="form">
-           <tr>
-			
-			<td style="color:black" ><input type="text" name="nombre" value="${choferes.nombre}" ></td>
-			<td style="color:black" ><input type="text" name="apellido" value="${choferes.apellido}" ></td>
-			<td style="color:black" ><input type="number" name="dni" value="${choferes.dni}" ></td>
-			<td style="color:black" ><input type="text" name="fechaDeNacimiento" value="${choferes.fechaDeNacimiento}" ></td>
-			<td style="color:black" ><input type="number" name="categoria" value="${choferes.categoria}" ></td>
-			<td style="color:black" ><input type="text" name="telefono" value="${choferes.telefono}" ></td>
-			<td style="display:none"><input type="number" name="id" value="${choferes.idChoferes}" ></td>
-			<td style="color:black" > <button type="submit" class="btn btn-primary" name="modificar" value="modificar">Modificar</button> </td>
-            <td style="color:black" > <button type="submit" class="btn btn-primary" name="eliminar" value="eliminar">Eliminar</button></td>
-                
-			</tr>
-            </form>
-		</c:forEach>
-		
-	</table>
-<a href="http://localhost:8080/FrontEnd/html/tablas/datosChoferes/NewChofer.jsp" class="btn btn-primary my-2">Añadir Chofer</a>
+						<td><button type="submit" class="btn btn-primary"
+								name="nuevo" value="nuevo">Añadir Chofer</button></td>
 
+					</tr>
+				</table>
+		</dl>
+
+
+	</form>
 
 </body>
 </html>

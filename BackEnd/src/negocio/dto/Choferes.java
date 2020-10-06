@@ -9,12 +9,12 @@ public class Choferes {
 	private String nombre;
 	private String apellido;
 	private int dni;
-	private Date fechaDeNacimiento;
+	private String fechaDeNacimiento;
 	private int categoria;
 	private String telefono;
 
 	public Choferes(int idChoferes, String nombre,
-			String apellido, int dni, Date fechaDeNacimiento, int categoria, String telefono) {
+			String apellido, int dni, String fechaDeNacimiento, int categoria, String telefono) {
 		super();
 		this.idChoferes = idChoferes;
 		this.nombre = nombre;
@@ -63,12 +63,12 @@ public class Choferes {
 		this.dni = dni;
 	}
 
-	public Date getFechaDeNacimiento() {
+	public String getFechaDeNacimiento() {
 		return fechaDeNacimiento;
 	}
 
-	public void setFechaDeNacimiento(Date date) {
-		this.fechaDeNacimiento = date;
+	public void setFechaDeNacimiento(String utilDate) {
+		this.fechaDeNacimiento = utilDate;
 	}
 
 	public int getCategoria() {
