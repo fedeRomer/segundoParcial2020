@@ -6,3 +6,75 @@ INSERT INTO `testdb`.`usuario`
 `password`)
 VALUES
 ('admin@gmail.com','1234');
+
+
+CREATE DATABASE `testdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+
+
+CREATE TABLE `camiones` (
+  `id_camiones` int NOT NULL AUTO_INCREMENT,
+  `marca` varchar(64) NOT NULL,
+  `modelo` varchar(45) NOT NULL,
+  `dominio` varchar(45) NOT NULL,
+  `categoria` int NOT NULL,
+  `carga_maxima_tn` int NOT NULL,
+  `litros_tanque` int NOT NULL,
+  `consumo_litros_km` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_camiones`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `choferes` (
+  `id_choferes` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(145) DEFAULT NULL,
+  `apellido` varchar(145) DEFAULT NULL,
+  `dni` int DEFAULT NULL,
+  `fecha_de_nacimiento` datetime DEFAULT NULL,
+  `categoria` int NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `id_usuario` int NOT NULL,
+  PRIMARY KEY (`id_choferes`),
+  KEY `id_usuario_idx` (`id_usuario`),
+  CONSTRAINT `id_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `provincias` (
+  `id_provincia` int NOT NULL AUTO_INCREMENT,
+  `provincia` varchar(145) NOT NULL,
+  PRIMARY KEY (`id_provincia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `test_table` (
+  `idtest_table` int NOT NULL,
+  `nombre` varchar(125) NOT NULL,
+  `apellido` varchar(125) NOT NULL,
+  `ciudad` varchar(125) DEFAULT NULL,
+  `telefono` varchar(45) DEFAULT NULL,
+  `test_column` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idtest_table`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `usuario` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `perfil` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `viajes` (
+  `id_viaje` int NOT NULL AUTO_INCREMENT,
+  `id_chofer` int NOT NULL,
+  `id_camion` int NOT NULL,
+  `id_origen` int NOT NULL,
+  `id_destino` int NOT NULL,
+  PRIMARY KEY (`id_viaje`),
+  KEY `id_chofer_idx` (`id_chofer`),
+  KEY `id_camion_idx` (`id_camion`),
+  KEY `id_origen_idx` (`id_origen`),
+  KEY `id_destino_idx` (`id_destino`),
+  CONSTRAINT `id_camion` FOREIGN KEY (`id_camion`) REFERENCES `camiones` (`id_camiones`),
+  CONSTRAINT `id_chofer` FOREIGN KEY (`id_chofer`) REFERENCES `choferes` (`id_choferes`),
+  CONSTRAINT `id_destino` FOREIGN KEY (`id_destino`) REFERENCES `provincias` (`id_provincia`),
+  CONSTRAINT `id_origen` FOREIGN KEY (`id_origen`) REFERENCES `provincias` (`id_provincia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

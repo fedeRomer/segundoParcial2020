@@ -25,11 +25,8 @@ public class CamionesDAOImpl implements CamionesDAO {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "INSERT INTO camiones ("
-				+ "marca,modelo,dominio,categoria,carga_maxima_tn,litros_tanque,consumo_litros_km"
-				+ ") "
-				+ "VALUES("
-				+ "?,?,?,?,?,?,?"
-				+ ") ";
+				+ "marca,modelo,dominio,categoria,carga_maxima_tn,litros_tanque,consumo_litros_km" + ") " + "VALUES("
+				+ "?,?,?,?,?,?,?" + ") ";
 		preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setString(1, o.getMarca());
 		preparedStatement.setString(2, o.getModelo());
@@ -54,9 +51,7 @@ public class CamionesDAOImpl implements CamionesDAO {
 	public Boolean modifyCamion(Camiones o) throws SQLException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
-		query = "UPDATE camiones "
-				+ "SET marca = ?,modelo = ?,dominio = ?,categoria = ?,carga_maxima_tn = ?,litros_tanque = ?,consumo_litros_km = ? "
-				+ "WHERE id_camiones = ?";
+		query = "UPDATE camiones SET marca = ? ,modelo = ? ,dominio = ? ,categoria = ? ,carga_maxima_tn = ? ,litros_tanque = ? ,consumo_litros_km = ? WHERE id_camiones = ?";
 		preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setString(1, o.getMarca());
 		preparedStatement.setString(2, o.getModelo());
@@ -66,7 +61,7 @@ public class CamionesDAOImpl implements CamionesDAO {
 		preparedStatement.setInt(6, o.getLitrosTanque());
 		preparedStatement.setInt(7, o.getConsumoLitrosKm());
 		preparedStatement.setInt(8, o.getIdCamiones());
-		int resultSet = preparedStatement.executeUpdate(query);
+		int resultSet = preparedStatement.executeUpdate();
 		if (resultSet == 1) {
 			preparedStatement.close();
 			connection.close();
@@ -84,18 +79,18 @@ public class CamionesDAOImpl implements CamionesDAO {
 		this.connection = mySQL.getConnection();
 		query = "SELECT * FROM camiones WHERE dominio LIKE ?";
 		preparedStatement = connection.prepareStatement(query);
-		preparedStatement.setString(0, o.getDominio());
+		preparedStatement.setString(1, o.getDominio());
 		ResultSet resultSet = preparedStatement.executeQuery();
 		Camiones camion = new Camiones();
-		while(resultSet.next()) {
-			camion.setIdCamiones(resultSet.getInt(0));
-			camion.setMarca(resultSet.getString(1));
-			camion.setModelo(resultSet.getString(2));
-			camion.setDominio(resultSet.getString(3));
-			camion.setCategoria(resultSet.getInt(4));
-			camion.setCargaMaximaTn(resultSet.getInt(5));
-			camion.setLitrosTanque(resultSet.getInt(6));
-			camion.setConsumoLitrosKm(resultSet.getInt(7));
+		while (resultSet.next()) {
+			camion.setIdCamiones(resultSet.getInt(1));
+			camion.setMarca(resultSet.getString(2));
+			camion.setModelo(resultSet.getString(3));
+			camion.setDominio(resultSet.getString(4));
+			camion.setCategoria(resultSet.getInt(5));
+			camion.setCargaMaximaTn(resultSet.getInt(6));
+			camion.setLitrosTanque(resultSet.getInt(7));
+			camion.setConsumoLitrosKm(resultSet.getInt(8));
 		}
 		resultSet.close();
 		preparedStatement.close();
@@ -111,22 +106,41 @@ public class CamionesDAOImpl implements CamionesDAO {
 		preparedStatement = connection.prepareStatement(query);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		List<Camiones> camionesList = new ArrayList<>();
-		while(resultSet.next()) {
+		while (resultSet.next()) {
 			Camiones camion = new Camiones();
-			camion.setIdCamiones(resultSet.getInt(0));
-			camion.setMarca(resultSet.getString(1));
-			camion.setModelo(resultSet.getString(2));
-			camion.setDominio(resultSet.getString(3));
-			camion.setCategoria(resultSet.getInt(4));
-			camion.setCargaMaximaTn(resultSet.getInt(5));
-			camion.setLitrosTanque(resultSet.getInt(6));
-			camion.setConsumoLitrosKm(resultSet.getInt(7));
+			camion.setIdCamiones(resultSet.getInt(1));
+			camion.setMarca(resultSet.getString(2));
+			camion.setModelo(resultSet.getString(3));
+			camion.setDominio(resultSet.getString(4));
+			camion.setCategoria(resultSet.getInt(5));
+			camion.setCargaMaximaTn(resultSet.getInt(6));
+			camion.setLitrosTanque(resultSet.getInt(7));
+			camion.setConsumoLitrosKm(resultSet.getInt(8));
 			camionesList.add(camion);
 		}
 		resultSet.close();
 		preparedStatement.close();
 		connection.close();
 		return camionesList;
+	}
+
+	@Override
+	public Boolean deleteCamion(int id) throws SQLException {
+		MySQL mySQL = new MySQL();
+		this.connection = mySQL.getConnection();
+		query = "DELETE FROM Camiones WHERE id_camiones = ?";
+		preparedStatement = connection.prepareStatement(query);
+		preparedStatement.setInt(1, id);
+		int resultSet = preparedStatement.executeUpdate();
+		if (resultSet == 1) {
+			preparedStatement.close();
+			connection.close();
+			return true;
+		} else {
+			preparedStatement.close();
+			connection.close();
+			return false;
+		}
 	}
 
 }

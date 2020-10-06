@@ -86,6 +86,37 @@ public class testMySQLConn {
 		}
 
 	}
+	@Test
+	public void selectAllCamiones() throws SQLException {
+		PreparedStatement preparedStatement;
+		CallableStatement callableStatement;
+		String query;
+		Connection connection;
+		Statement statement;
+		MySQL mySQL = new MySQL();
+		connection = mySQL.getConnection();
+		query = "SELECT * FROM Camiones";
+		preparedStatement = connection.prepareStatement(query);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		List<Camiones> camionesList = new ArrayList<>();
+		while(resultSet.next()) {
+			Camiones camion = new Camiones();
+			camion.setIdCamiones(resultSet.getInt(1));
+			camion.setMarca(resultSet.getString(2));
+			camion.setModelo(resultSet.getString(3));
+			camion.setDominio(resultSet.getString(4));
+			camion.setCategoria(resultSet.getInt(5));
+			camion.setCargaMaximaTn(resultSet.getInt(6));
+			camion.setLitrosTanque(resultSet.getInt(7));
+			camion.setConsumoLitrosKm(resultSet.getInt(8));
+			camionesList.add(camion);
+		}
+		resultSet.close();
+		preparedStatement.close();
+		connection.close();
+		//return camionesList;
+	
+	}
 
 	@Test
 	public void insertInto()  {

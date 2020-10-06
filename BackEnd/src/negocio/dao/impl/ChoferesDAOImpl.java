@@ -26,11 +26,8 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 	public Boolean addChofer(Choferes o) throws SQLException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
-		query = "INSERT INTO choferes (" 
-				+ "nombre,apellido,dni,fecha_de_nacimiento,categoria,telefono" 
-				+ ") " + "VALUES ("
-				+ "?,?,?,?,?,?"
-				+ ") ";
+		query = "INSERT INTO choferes (" + "nombre,apellido,dni,fecha_de_nacimiento,categoria,telefono" + ") "
+				+ "VALUES(" + "?,?,?,?,?,?" + ") ";
 		preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setString(1, o.getNombre());
 		preparedStatement.setString(2, o.getApellido());
@@ -55,7 +52,7 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "UPDATE choferes "
-				+ "SET nombre = ?,apellido = ?,dni = ?,fecha_de_nacimiento = ?,categoria = ?,telefono = ?"
+				+ "SET nombre = ?,apellido = ?,dni = ?,fecha_de_nacimiento = ?,categoria = ?,telefono = ? "
 				+ "WHERE id_choferes = ?";
 		preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setString(1, o.getNombre());
@@ -87,13 +84,13 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 		ResultSet resultSet = preparedStatement.executeQuery();
 		Choferes chofer = new Choferes();
 		while (resultSet.next()) {
-			chofer.setIdChoferes(resultSet.getInt(0));
-			chofer.setNombre(resultSet.getString(1));
-			chofer.setApellido(resultSet.getString(2));
-			chofer.setDni(resultSet.getInt(3));
-			chofer.setFechaDeNacimiento(resultSet.getDate(4));
-			chofer.setCategoria(resultSet.getInt(5));
-			chofer.setTelefono(resultSet.getString(6));
+			chofer.setIdChoferes(resultSet.getInt(1));
+			chofer.setNombre(resultSet.getString(2));
+			chofer.setApellido(resultSet.getString(3));
+			chofer.setDni(resultSet.getInt(4));
+			chofer.setFechaDeNacimiento(resultSet.getDate(5));
+			chofer.setCategoria(resultSet.getInt(6));
+			chofer.setTelefono(resultSet.getString(7));
 		}
 		resultSet.close();
 		preparedStatement.close();
@@ -111,19 +108,38 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 		List<Choferes> choferesList = new ArrayList<>();
 		while (resultSet.next()) {
 			Choferes chofer = new Choferes();
-			chofer.setIdChoferes(resultSet.getInt(0));
-			chofer.setNombre(resultSet.getString(1));
-			chofer.setApellido(resultSet.getString(2));
-			chofer.setDni(resultSet.getInt(3));
-			chofer.setFechaDeNacimiento(resultSet.getDate(4));
-			chofer.setCategoria(resultSet.getInt(5));
-			chofer.setTelefono(resultSet.getString(6));
+			chofer.setIdChoferes(resultSet.getInt(1));
+			chofer.setNombre(resultSet.getString(2));
+			chofer.setApellido(resultSet.getString(3));
+			chofer.setDni(resultSet.getInt(4));
+			chofer.setFechaDeNacimiento(resultSet.getDate(5));
+			chofer.setCategoria(resultSet.getInt(6));
+			chofer.setTelefono(resultSet.getString(7));
 			choferesList.add(chofer);
 		}
 		resultSet.close();
 		preparedStatement.close();
 		connection.close();
 		return choferesList;
+	}
+
+	@Override
+	public Boolean deleteChofer(int id) throws SQLException {
+		MySQL mySQL = new MySQL();
+		this.connection = mySQL.getConnection();
+		query = "DELETE FROM Choferes WHERE id_choferes = ?";
+		preparedStatement = connection.prepareStatement(query);
+		preparedStatement.setInt(1, id);
+		int resultSet = preparedStatement.executeUpdate();
+		if (resultSet == 1) {
+			preparedStatement.close();
+			connection.close();
+			return true;
+		} else {
+			preparedStatement.close();
+			connection.close();
+			return false;
+		}
 	}
 
 }

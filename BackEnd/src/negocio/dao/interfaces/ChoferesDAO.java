@@ -10,9 +10,11 @@ public interface ChoferesDAO {
 	public Boolean addChofer(Choferes o) throws SQLException;
 
 	public Boolean modifyChofer(Choferes o) throws SQLException;
+	
+	public Boolean deleteChofer(int id) throws SQLException;
 
 	public Choferes searchChofer(Choferes o) throws SQLException;
-
+	
 	public List<Choferes> getChoferes() throws SQLException;
 
 }

@@ -71,15 +71,13 @@ public class Login extends HttpServlet {
 		try {
 			Usuario usuario = usuarioDAO.getUsuario(user, password);
 			if (usuario.getUsername() != null && usuario.getPassword() != null) {
-				Cookie loginCookie = new Cookie("user",user);
-				loginCookie.setMaxAge(30*60);
+				Cookie loginCookie = new Cookie("user", user);
+				loginCookie.setMaxAge(30 * 60);
 				response.addCookie(loginCookie);
-				response.sendRedirect("http://localhost:8081/FrontEnd/html/LoginSuccess.jsp");
-				//https://www.journaldev.com/1907/java-session-management-servlet-httpsession-url-rewriting
-			}else {
-				PrintWriter out= response.getWriter();
-				out.println("<font color=red>Either user name or password is wrong.</font>");
-				response.sendRedirect("http://localhost:8081/FrontEnd/index.jsp");
+				response.sendRedirect("http://localhost:8080/FrontEnd/html/LoginSuccess.jsp");
+				// https://www.journaldev.com/1907/java-session-management-servlet-httpsession-url-rewriting
+			} else {
+				response.sendRedirect("http://localhost:8080/FrontEnd");
 			}
 
 		} catch (Exception e) {

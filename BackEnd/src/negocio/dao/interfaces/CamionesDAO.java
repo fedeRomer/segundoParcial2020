@@ -11,6 +11,8 @@ public interface CamionesDAO {
 	public Boolean addCamion(Camiones o) throws SQLException;
 
 	public Boolean modifyCamion(Camiones o) throws SQLException;
+	
+	public Boolean deleteCamion(int id) throws SQLException;
 
 	public Camiones searchCamion(Camiones o) throws SQLException;
 
