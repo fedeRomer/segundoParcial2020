@@ -20,7 +20,6 @@
 
 <header>
 
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="http://localhost:8080/FrontEnd">Navbar</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -30,7 +29,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/FrontEnd">Inicio
+				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/FrontEnd/html/Home2.html">Inicio
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/ChoferesController">Choferes</a>
@@ -44,8 +43,8 @@
 						<a class="dropdown-item" href="http://localhost:8080/FrontEnd/DestinosController">Destinos</a> <a
 							class="dropdown-item" href="http://localhost:8080/FrontEnd/CategoriasController">Categorias</a> 
 							<a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Tabla de distancias</a>
-							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Administrador)</a>
-							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Chofer)</a>
+							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/ViajesController">Viajes (Administrador)</a>
+							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosViajesAsignados/ViajesAsignadosData.jsp">Viajes (Chofer)</a>
 							
 					</div></li>
 			</ul>

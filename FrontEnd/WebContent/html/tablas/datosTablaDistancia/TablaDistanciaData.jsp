@@ -41,7 +41,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/FrontEnd">Inicio
+				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/FrontEnd/html/Home2.html">Inicio
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/ChoferesController">Choferes</a>
@@ -55,8 +55,8 @@
 						<a class="dropdown-item" href="http://localhost:8080/FrontEnd/DestinosController">Destinos</a> <a
 							class="dropdown-item" href="http://localhost:8080/FrontEnd/CategoriasController">Categorias</a> 
 							<a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Tabla de distancias</a>
-							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Administrador)</a>
-							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Chofer)</a>
+							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/ViajesController">Viajes (Administrador)</a>
+							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosViajesAsignados/ViajesAsignadosData.jsp">Viajes (Chofer)</a>
 							
 					</div></li>
 			</ul>
@@ -65,8 +65,16 @@
 </header>
 
 <body>
-
-
+<%
+String userName = null;
+Cookie[] cookies = request.getCookies();
+	if (cookies != null) {
+		for (Cookie cookie : cookies) {
+			if(cookie.getValue().equals("Chofer"))
+				response.sendRedirect("http://localhost:8080/FrontEnd/html/Home2.html");
+		}
+	}
+	%>
 	<h1>Tabla de distancias</h1>
 
 	<table id="datatable" class="table table-striped table-bordered table-sm" width="100%">

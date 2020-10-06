@@ -77,9 +77,9 @@ public class CamionesDAOImpl implements CamionesDAO {
 	public Camiones searchCamion(Camiones o) throws SQLException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
-		query = "SELECT * FROM camiones WHERE dominio LIKE ?";
+		query = "SELECT * FROM camiones WHERE id_camiones = ?";
 		preparedStatement = connection.prepareStatement(query);
-		preparedStatement.setString(1, o.getDominio());
+		preparedStatement.setInt(1, o.getIdCamiones());
 		ResultSet resultSet = preparedStatement.executeQuery();
 		Camiones camion = new Camiones();
 		while (resultSet.next()) {

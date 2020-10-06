@@ -23,7 +23,7 @@
 	crossorigin="anonymous"></script>
 	
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<meta http-equiv = "refresh" content = "3; url = http://localhost:8080/FrontEnd/CamionesController" />
+<meta http-equiv = "refresh" content = "3; url = http://localhost:8080/FrontEnd/html/Home2.html" />
 <title>Login Success Page</title>
 </head>
 <header>
@@ -71,8 +71,8 @@
 		response.sendRedirect("http://localhost:8080/FrontEnd");
 	%>
 	<h3>
-		Hi
-		<%=userName%>, Login successful.
+		Hola
+		<%=userName%>, Login Exitoso.
 		Redireccionando al inicio
 	</h3>
 	<br>

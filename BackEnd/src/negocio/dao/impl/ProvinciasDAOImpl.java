@@ -39,14 +39,22 @@ public class ProvinciasDAOImpl implements ProvinciasDAO {
 	public Provincias searchProvincia(Provincias o) throws SQLException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
-		query = "SELECT * FROM provincias WHERE provincia LIKE ?";
+		query = "SELECT * FROM provincias WHERE id_provincia = ?";
 		preparedStatement = connection.prepareStatement(query);
-		preparedStatement.setString(1, o.getProvincia());
+		preparedStatement.setInt(1, o.getIdProvincia());
 		ResultSet resultSet = preparedStatement.executeQuery();
 		Provincias provincia = new Provincias();
 		while (resultSet.next()) {
 			provincia.setIdProvincia(resultSet.getInt(1));
 			provincia.setProvincia(resultSet.getString(2));
+			provincia.setCaba(resultSet.getInt(3));
+			provincia.setCordoba(resultSet.getInt(4));
+			provincia.setCorrientes(resultSet.getInt(5));
+			provincia.setFormosa(resultSet.getInt(6));
+			provincia.setLa_plata(resultSet.getInt(7));
+			provincia.setLa_rioja(resultSet.getInt(8));
+			provincia.setMendoza(resultSet.getInt(9));
+			provincia.setNeuquen(resultSet.getInt(10));
 		}
 		resultSet.close();
 		preparedStatement.close();

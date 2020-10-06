@@ -79,9 +79,9 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 	public Choferes searchChofer(Choferes o) throws SQLException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
-		query = "SELECT * FROM choferes WHERE dni LIKE ?";
+		query = "SELECT * FROM choferes WHERE id_choferes = ?";
 		preparedStatement = connection.prepareStatement(query);
-		preparedStatement.setInt(0, o.getDni());
+		preparedStatement.setInt(1, o.getIdChoferes());
 		ResultSet resultSet = preparedStatement.executeQuery();
 		Choferes chofer = new Choferes();
 		while (resultSet.next()) {

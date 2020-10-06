@@ -3,19 +3,26 @@ package negocio.dto;
 public class Viajes {
 	// pk
 	private int idViaje;
-	// fk
-	private int idChofer;
-	private int idCamion;
-	private int idOrigen;
-	private int idDestino;
 
-	public Viajes(int idViaje, int idChofer, int idCamion, int idOrigen, int idDestino) {
+	private Choferes chofer;
+	private Camiones camion;
+	private Provincias origen;
+	private Provincias destino;
+	private int distancia;
+	private int tiempoDeViaje;
+	private int tanquesDeCombustible;
+
+	public Viajes(int idViaje, Choferes chofer, Camiones camion, Provincias origen, Provincias destino, int distancia,
+			int tiempoDeViaje, int tanquesDeCombustible) {
 		super();
 		this.idViaje = idViaje;
-		this.idChofer = idChofer;
-		this.idCamion = idCamion;
-		this.idOrigen = idOrigen;
-		this.idDestino = idDestino;
+		this.chofer = chofer;
+		this.camion = camion;
+		this.origen = origen;
+		this.destino = destino;
+		this.distancia = distancia;
+		this.tiempoDeViaje = tiempoDeViaje;
+		this.tanquesDeCombustible = tanquesDeCombustible;
 	}
 
 	public Viajes() {
@@ -30,36 +37,60 @@ public class Viajes {
 		this.idViaje = idViaje;
 	}
 
-	public int getIdChofer() {
-		return idChofer;
+	public int getChofer() {
+		return chofer.getIdChoferes();
 	}
 
-	public void setIdChofer(int idChofer) {
-		this.idChofer = idChofer;
+	public void setChofer(Choferes chofer) {
+		this.chofer = chofer;
 	}
 
-	public int getIdCamion() {
-		return idCamion;
+	public int getCamion() {
+		return camion.getIdCamiones();
 	}
 
-	public void setIdCamion(int idCamion) {
-		this.idCamion = idCamion;
+	public void setCamion(Camiones camion) {
+		this.camion = camion;
 	}
 
-	public int getIdOrigen() {
-		return idOrigen;
+	public int getOrigen() {
+		return origen.getIdProvincia();
 	}
 
-	public void setIdOrigen(int idOrigen) {
-		this.idOrigen = idOrigen;
+	public void setOrigen(Provincias origen) {
+		this.origen = origen;
 	}
 
-	public int getIdDestino() {
-		return idDestino;
+	public int getDestino() {
+		return destino.getIdProvincia();
 	}
 
-	public void setIdDestino(int idDestino) {
-		this.idDestino = idDestino;
+	public void setDestino(Provincias destino) {
+		this.destino = destino;
+	}
+
+	public int getDistancia() {
+		return distancia;
+	}
+
+	public void setDistancia(int distancia) {
+		this.distancia = distancia;
+	}
+
+	public int getTiempoDeViaje() {
+		return tiempoDeViaje;
+	}
+
+	public void setTiempoDeViaje(int tiempoDeViaje) {
+		this.tiempoDeViaje = tiempoDeViaje;
+	}
+
+	public int getTanquesDeCombustible() {
+		return tanquesDeCombustible;
+	}
+
+	public void setTanquesDeCombustible(int tanquesDeCombustible) {
+		this.tanquesDeCombustible = tanquesDeCombustible;
 	}
 
 }

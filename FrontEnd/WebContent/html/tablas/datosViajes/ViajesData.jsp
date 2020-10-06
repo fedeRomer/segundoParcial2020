@@ -51,7 +51,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/FrontEnd">Inicio
+				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/FrontEnd/html/Home2.html">Inicio
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/ChoferesController">Choferes</a>
@@ -65,8 +65,8 @@
 						<a class="dropdown-item" href="http://localhost:8080/FrontEnd/DestinosController">Destinos</a> <a
 							class="dropdown-item" href="http://localhost:8080/FrontEnd/CategoriasController">Categorias</a> 
 							<a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Tabla de distancias</a>
-							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Administrador)</a>
-							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Chofer)</a>
+							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/ViajesController">Viajes (Administrador)</a>
+							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosViajesAsignados/ViajesAsignadosData.jsp">Viajes (Chofer)</a>
 							
 					</div></li>
 			</ul>
@@ -75,41 +75,50 @@
 </header>
 
 <body>
-
+<%
+String userName = null;
+Cookie[] cookies = request.getCookies();
+	if (cookies != null) {
+		for (Cookie cookie : cookies) {
+			if(cookie.getValue().equals("Chofer"))
+				response.sendRedirect("http://localhost:8080/FrontEnd/html/Home2.html");
+		}
+	}
+	%>
 
 	<h1>Lista de viajes</h1>
 
 	<table id="datatable" class="table table-striped table-bordered table-sm" style="width:100%">
 		<tr>
-			<td style="color: black">Chofer</td>
-			<td style="color: black">Camión</td>
-			<td style="color: black">Origen</td>
-			<td style="color: black">Destino</td>
-			<td style="color: black">Distancia</td>
-			<td style="color: black">Tiempo de Viaje</td>
-			<td style="color: black">Tanques De combustible</td>
+			<th class="th-sm" style="color: black">Chofer</th>
+			<th class="th-sm" style="color: black">Camión</th>
+			<th class="th-sm" style="color: black">Origen</th>
+			<th class="th-sm" style="color: black">Destino</th>
+			<th class="th-sm" style="color: black">Distancia (km)</th>
+			<th class="th-sm" style="color: black">Tiempo de Viaje (dias)</th>
+			<th class="th-sm" style="color: black">Tanques De combustible (cantidad)</th>
 		</tr>
 
-		<c:forEach var="choferes" items="${lista}">
-		<form action="http://localhost:8080/FrontEnd/ChoferesController" method="post" id="form">
+		<c:forEach var="viajes" items="${lista}">
            <tr>
 			
-			<td style="color:black" ><input type="text" name="nombre" value="${choferes.nombre}" ></td>
-			<td style="color:black" ><input type="text" name="apellido" value="${choferes.apellido}" ></td>
-			<td style="color:black" ><input type="number" name="dni" min="1" max="99999999" value="${choferes.dni}" ></td>
-			<td style="color:black" ><input type="text" name="fechaDeNacimiento" value="${choferes.fechaDeNacimiento}" ></td>
-			<td style="color:black" ><input type="number" name="categoria" min="1" max="5" value="${choferes.categoria}" ></td>
-			<td style="color:black" ><input type="text" name="telefono" value="${choferes.telefono}" ></td>
-			<td style="display:none"><input type="number" name="id" value="${choferes.idChoferes}" ></td>
-			<td style="color:black" > <button type="submit" class="btn btn-primary" name="modificar" value="modificar">Modificar</button> </td>
-            <td style="color:black" > <button type="submit" class="btn btn-danger" name="eliminar" value="eliminar">Eliminar</button></td>
-                
+			<td style="color:black"><c:out value="${viajes.chofer}" /></td>
+			<td style="color:black"><c:out value="${viajes.camion}" /></td>
+			<td style="color:black"><c:out value="${viajes.origen}" /></td>
+			<td style="color:black"><c:out value="${viajes.destino}" /></td>
+			<td style="color:black"><c:out value="${viajes.distancia}" /></td>
+			<td style="color:black"><c:out value="${viajes.tiempoDeViaje}" /></td>
+			<td style="color:black"><c:out value="${viajes.tanquesDeCombustible}" /></td>
+			
 			</tr>
-            </form>
 		</c:forEach>
 		
 	</table> 
-<a href="http://localhost:8080/FrontEnd/html/tablas/datosViajes/NewViaje.jsp" class="btn btn-primary my-2">Añadir Nuevo Viaje</a>
+	
+	<form action="http://localhost:8080/FrontEnd/ViajesController" method="post" id="form">
+		<button type="submit" class="btn btn-primary" name="addPopulate" value="addPopulate">Añadir Nuevo Viaje</button>
+	</form>
+ <!-- <a href="http://localhost:8080/FrontEnd/html/tablas/datosViajes/NewViaje.jsp" class="btn btn-primary my-2">Añadir Nuevo Viaje</a> --> 
 
 
 

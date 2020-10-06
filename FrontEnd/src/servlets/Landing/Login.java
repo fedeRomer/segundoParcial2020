@@ -67,13 +67,8 @@ public class Login extends HttpServlet {
 		try {
 			Usuario usuario = usuarioDAO.getUsuario(user, password);
 			if (usuario.getUsername() != null && usuario.getPassword() != null) {
-				Cookie loginCookie = new Cookie("user", user);
+				Cookie loginCookie = new Cookie("user", usuario.getPerfil());
 				loginCookie.setMaxAge(30 * 60);
-				//TODO: urgente cookies
-				/*
-				 * añadir un cookie.setValue(chofer o admin)
-				 * despues en controller validar antes de entrar a X pagina y restringir o autorizar segun value equals chofer admin
-				 */
 				response.addCookie(loginCookie);
 				response.sendRedirect("http://localhost:8080/FrontEnd/html/LoginSuccess.jsp");
 				// https://www.journaldev.com/1907/java-session-management-servlet-httpsession-url-rewriting

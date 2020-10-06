@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +51,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/FrontEnd">Inicio
+				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/FrontEnd/html/Home2.html">Inicio
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/FrontEnd/ChoferesController">Choferes</a>
@@ -63,51 +65,84 @@
 						<a class="dropdown-item" href="http://localhost:8080/FrontEnd/DestinosController">Destinos</a> <a
 							class="dropdown-item" href="http://localhost:8080/FrontEnd/CategoriasController">Categorias</a> 
 							<a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Tabla de distancias</a>
-							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Administrador)</a>
-							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Viajes (Chofer)</a>
+							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/ViajesController">Viajes (Administrador)</a>
+							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosViajesAsignados/ViajesAsignadosData.jsp">Viajes (Chofer)</a>
 							
 					</div></li>
 			</ul>
 		</div>
 	</nav>
 </header>
-al servlet request.setAttribute("calculation_result", new Float(324324.45f));
-en el jsp <div class="myCSSclass">The result is <%= request.getAttribute("calculation_result") %></div>
-https://stackoverflow.com/questions/23874131/using-java-servlet-as-a-response-page-to-an-html-form
-<body>
-<form action="http://localhost:8080/FrontEnd/ChoferesController"
-		method="post" id="form">
 
+<body>
+<%
+String userName = null;
+Cookie[] cookies = request.getCookies();
+	if (cookies != null) {
+		for (Cookie cookie : cookies) {
+			if(cookie.getValue().equals("Chofer"))
+				response.sendRedirect("http://localhost:8080/FrontEnd/html/Home2.html");
+		}
+	}
+	%>
+	
+
+	
+
+<form action="http://localhost:8080/FrontEnd/ViajesController" method="post" id="form">
 
 		<dl>
 			<dd>
 				<table border="1">
 					<tr>
-						<td>Chofer</td>
-						<td><input type="text" name="chofer" required></td>
+						<td>Chofer (DNI)</td>
+						<td><select name="chofer">
+							<c:forEach items="${choferes}" var="choferes"
+								varStatus="loop">
+								<option type="text" value="${choferes.idChoferes}" id="chofer" name="chofer">${choferes.dni}</option>
+							</c:forEach>
+						</select></td>
+						
+						
+						
 					</tr>
 					<tr>
-						<td>Camión</td>
-						<td><input type="text" name="camion" required></td>
+						<td>Camión (Dominio)</td>
+						<td><select name="camion">
+							<c:forEach items="${camiones}" var="camiones"
+								varStatus="loop">
+								<option type="text" value="${camiones.idCamiones}" id="camion" name="camion">${camiones.dominio}</option>
+							</c:forEach>
+						</select>
+						</td>
+						
 					</tr>
 					<tr>
 						<td>Origen</td>
-						<td><input type="text" name="origen" required></td>
+						<td><select name=origen>
+							<c:forEach items="${provincias}" var="origen"
+								varStatus="loop">
+								<option type="text" value="${origen.idProvincia}" id="origen" name="origen">${origen.provincia}</option>
+							</c:forEach>
+						</select></td>
+						
 					</tr>
 					<tr>
 						<td>Destino</td>
-						<td><input type="text" name="destino" required></td>
-					</tr>
-					<tr>
-						<td>Distancia</td>
-						<td><input type="number" name="distancia" min="1" max="55555555555" required></td>
+						<td><select name="destino">
+							<c:forEach items="${provincias}" var="destino"
+								varStatus="loop">
+								<option type="text" value="${destino.idProvincia}" id="destino" name="destino">${destino.provincia}</option>
+							</c:forEach>
+						</select>
+						</td>
+						
 					</tr>
 					<tr>
 						<td><input type="button" class="btn btn-primary"
 							value="Volver" onclick="history.back()"></td>
 
-						<td><button type="submit" class="btn btn-primary"
-								name="nuevo" value="nuevo">Añadir Viaje</button></td>
+						<td><button type="submit" class="btn btn-primary" name="nuevo" value="nuevo">Añadir Nuevo Viaje</button></td>
 
 					</tr>
 				</table>

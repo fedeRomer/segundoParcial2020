@@ -28,6 +28,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			usuario.setId(set.getInt(1));
 			usuario.setUsername(set.getString(2));
 			usuario.setPassword(set.getString(3));
+			usuario.setPerfil(set.getString(4));
 		}
 		set.close();
 		preparedStatement.close();
