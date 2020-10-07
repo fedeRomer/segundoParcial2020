@@ -10,10 +10,10 @@ public class Viajes {
 	private Provincias destino;
 	private int distancia;
 	private int tiempoDeViaje;
-	private int tanquesDeCombustible;
+	private Double tanquesDeCombustible;
 
 	public Viajes(int idViaje, Choferes chofer, Camiones camion, Provincias origen, Provincias destino, int distancia,
-			int tiempoDeViaje, int tanquesDeCombustible) {
+			int tiempoDeViaje, Double tanquesDeCombustible) {
 		super();
 		this.idViaje = idViaje;
 		this.chofer = chofer;
@@ -85,11 +85,11 @@ public class Viajes {
 		this.tiempoDeViaje = tiempoDeViaje;
 	}
 
-	public int getTanquesDeCombustible() {
+	public Double getTanquesDeCombustible() {
 		return tanquesDeCombustible;
 	}
 
-	public void setTanquesDeCombustible(int tanquesDeCombustible) {
+	public void setTanquesDeCombustible(Double tanquesDeCombustible) {
 		this.tanquesDeCombustible = tanquesDeCombustible;
 	}
 

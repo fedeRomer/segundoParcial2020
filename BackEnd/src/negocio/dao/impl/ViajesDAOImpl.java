@@ -29,7 +29,31 @@ public class ViajesDAOImpl implements ViajesDAO{
 	
 	@Override
 	public Boolean addViaje(Viajes o) throws SQLException {
-		return false;
+
+		MySQL mySQL = new MySQL();
+		this.connection = mySQL.getConnection();
+		query = "INSERT INTO viajes ("
+				+ "id_chofer,id_camion,id_origen,id_destino,distancia,tiempo_de_viaje,tanques_de_combustible" + ") " + "VALUES("
+				+ "?,?,?,?,?,?,?" + ") ";
+		preparedStatement = connection.prepareStatement(query);
+		preparedStatement.setInt(1, o.getChofer());
+		preparedStatement.setInt(2, o.getCamion());
+		preparedStatement.setInt(3, o.getOrigen());
+		preparedStatement.setInt(4, o.getDestino());
+		preparedStatement.setInt(5, o.getDistancia());
+		preparedStatement.setInt(6, o.getTiempoDeViaje());
+		preparedStatement.setDouble(7, o.getTanquesDeCombustible());
+		int resultSet = preparedStatement.executeUpdate();
+		if (resultSet == 1) {
+			preparedStatement.close();
+			connection.close();
+			return true;
+		} else {
+			preparedStatement.close();
+			connection.close();
+			return false;
+		}
+	
 	}
 	@Override
 	public Boolean modifyViaje(Viajes o) throws SQLException {
@@ -70,7 +94,7 @@ public class ViajesDAOImpl implements ViajesDAO{
 			
 			viajes.setDistancia(resultSet.getInt(6));
 			viajes.setTiempoDeViaje(resultSet.getInt(7));
-			viajes.setTanquesDeCombustible(resultSet.getInt(8));
+			viajes.setTanquesDeCombustible(resultSet.getDouble(8));
 			
 			viajesList.add(viajes);
 		}

@@ -6,39 +6,58 @@ import java.sql.SQLException;
 import negocio.dao.factory.CamionesDAOFactory;
 import negocio.dao.factory.ChoferesDAOFactory;
 import negocio.dao.factory.ProvinciasDAOFactory;
+import negocio.dao.factory.ViajesDAOFactory;
 import negocio.dao.interfaces.CamionesDAO;
 import negocio.dao.interfaces.ChoferesDAO;
 import negocio.dao.interfaces.ProvinciasDAO;
+import negocio.dao.interfaces.ViajesDAO;
 import negocio.dto.Camiones;
 import negocio.dto.Choferes;
 import negocio.dto.Provincias;
 import negocio.dto.Viajes;
 
 public class NuevoViaje {
+	Choferes chofer = new Choferes();
+	Camiones camion = new Camiones();
 
-	public Boolean addViaje(Viajes o) {
+	ViajesDAO viajeDAO = ViajesDAOFactory.get("database");
 
-		// TODO: invocar BLL y calcular distancia, tiempo de viaje, tanques de
-		// combustible
-		// pasando como parametro id camion, id origen, id destino
-		// y retornando lista de parametros
+	public Boolean addViaje(Viajes o) throws SQLException {
 
-		return null;
+		if (this.validateCategoria(this.getChofer(o.getChofer()), this.getCamion(o.getCamion()))) {
+			o.setDistancia(this.calcularDistancia(o.getOrigen(), o.getDestino()));
+			o.setTiempoDeViaje(this.calcularTiempoDeViaje(o.getDistancia()));
+			o.setTanquesDeCombustible(this.calcularTanquesDeCombustible(o.getDistancia(), this.camion.getLitrosTanque(),
+					this.camion.getConsumoLitrosKm()));
+
+			if (this.viajeDAO.addViaje(o)) {
+				System.out.println("ok add viaje");
+				return true;
+			} else {
+				System.out.println("no ok add viaje");
+				return false;
+			}
+
+		} else {
+			return false;
+		}
 
 	}
 
-	public Choferes getChofer(Choferes o) throws SQLException {
+	public Choferes getChofer(int id) throws SQLException {
 		ChoferesDAO choferDAO = ChoferesDAOFactory.get("database");
-		Choferes chofer = new Choferes();
-		chofer = choferDAO.searchChofer(o);
-		return chofer;
+
+		this.chofer.setIdChoferes(id);
+		this.chofer = choferDAO.searchChofer(this.chofer);
+		return this.chofer;
 	}
 
-	public Camiones getCamion(Camiones o) throws SQLException {
+	public Camiones getCamion(int id) throws SQLException {
 		CamionesDAO camionDAO = CamionesDAOFactory.get("database");
-		Camiones camion = new Camiones();
-		camion = camionDAO.searchCamion(o);
-		return camion;
+
+		this.camion.setIdCamiones(id);
+		this.camion = camionDAO.searchCamion(this.camion);
+		return this.camion;
 
 	}
 
@@ -85,19 +104,23 @@ public class NuevoViaje {
 
 	}
 
-	public int calcularTanquesDeCombustible(int distancia, int consumo,int tanqueLitros) {
-		/*
-			24 L/100Km
-			(800km / 350km)*24L
-			(800/100)*24 = cantidad de litros a consumir 
-			24*8?
-		 */
-		int tanquesAusar= 0;
-		
-		tanquesAusar = distancia/tanqueLitros;
-		
-		//(gastoFinal*tanque)/cantidadQueLleva
-		return (distancia*consumo)/100;
+	public double calcularTanquesDeCombustible(int distanciaKm, int tanqueLitros, int consumoL100km) {
+		double tanquesAusar = 0;
+		int litrosAconsumir = 0;
+		// para 100km uso 24L
+		// para 1800 uso 432
+		litrosAconsumir = (distanciaKm * consumoL100km) / 100;
+		tanquesAusar = litrosAconsumir / tanqueLitros;
+		System.out.println("tanques a usar:"+tanquesAusar+"\nlitros a consumir: "+litrosAconsumir);
+		return tanquesAusar;
+	}
+
+	public Boolean validateCategoria(Choferes o, Camiones z) {
+		if (o.getCategoria() >= z.getCategoria()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

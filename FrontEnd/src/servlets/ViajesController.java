@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import negocio.bll.NuevoViaje;
 import negocio.dao.factory.CamionesDAOFactory;
 import negocio.dao.factory.ChoferesDAOFactory;
 import negocio.dao.factory.ProvinciasDAOFactory;
@@ -171,12 +172,9 @@ public class ViajesController extends HttpServlet {
 		// combustible
 		// pasando como parametro id camion, id origen, id destino
 		// y retornando lista de parametros
-
-		if (this.viajeDAO.addViaje(viaje)) {
-			System.err.println("add ok");
-		} else {
-			System.err.println("no ok");
-		}
+		NuevoViaje n = new NuevoViaje();
+		n.addViaje(viaje);
+		
 
 	}
 
