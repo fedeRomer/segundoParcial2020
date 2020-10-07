@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import negocio.dao.factory.UsuarioDAOFactory;
 import negocio.dao.interfaces.UsuarioDAO;
@@ -60,6 +61,8 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession(true);
+		
 		UsuarioDAO usuarioDAO = UsuarioDAOFactory.get("database");
 		String user = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -67,9 +70,11 @@ public class Login extends HttpServlet {
 		try {
 			Usuario usuario = usuarioDAO.getUsuario(user, password);
 			if (usuario.getUsername() != null && usuario.getPassword() != null) {
-				Cookie loginCookie = new Cookie("user", usuario.getPerfil());
+				Cookie loginCookie = new Cookie("user", user);
 				loginCookie.setMaxAge(30 * 60);
 				response.addCookie(loginCookie);
+				session.setAttribute("perfil", usuario.getPerfil());
+				session.setAttribute("idUser", usuario.getId());
 				response.sendRedirect("http://localhost:8080/FrontEnd/html/LoginSuccess.jsp");
 				// https://www.journaldev.com/1907/java-session-management-servlet-httpsession-url-rewriting
 			} else {

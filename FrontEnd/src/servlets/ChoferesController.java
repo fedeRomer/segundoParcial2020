@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import negocio.dao.factory.ChoferesDAOFactory;
 import negocio.dao.interfaces.ChoferesDAO;
@@ -45,17 +47,25 @@ public class ChoferesController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("html/tablas/datosChoferes/ChoferesData.jsp");
-		List<Choferes> choferes = new ArrayList<Choferes>();
-		ChoferesDAO choferDAO = ChoferesDAOFactory.get("database");
-		try {
-			choferes = choferDAO.getChoferes();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		HttpSession session= (HttpSession) request.getSession();
+		if(session.getAttribute("perfil").equals("Admin")) {
 
-		request.setAttribute("lista", choferes);
-		dispatcher.forward(request, response);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("html/tablas/datosChoferes/ChoferesData.jsp");
+			List<Choferes> choferes = new ArrayList<Choferes>();
+			ChoferesDAO choferDAO = ChoferesDAOFactory.get("database");
+			try {
+				choferes = choferDAO.getChoferes();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			request.setAttribute("lista", choferes);
+			dispatcher.forward(request, response);
+		}else {
+			PrintWriter pw= response.getWriter();
+			pw.println("No autorizado");
+			pw.close();
+		}
 	}
 
 	/**

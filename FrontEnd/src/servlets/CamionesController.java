@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import negocio.dao.factory.CamionesDAOFactory;
 import negocio.dao.interfaces.CamionesDAO;
@@ -50,19 +52,27 @@ public class CamionesController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("html/tablas/datosCamiones/CamionesData.jsp");
+		HttpSession session= (HttpSession) request.getSession();
+		if(session.getAttribute("perfil").equals("Admin")) {
 
-		CamionesDAO camionDAO = CamionesDAOFactory.get("database");
-		List<Camiones> camiones = new ArrayList<Camiones>();
-		try {
-			camiones = camionDAO.getCamiones();
+			RequestDispatcher dispatcher = request.getRequestDispatcher("html/tablas/datosCamiones/CamionesData.jsp");
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+			CamionesDAO camionDAO = CamionesDAOFactory.get("database");
+			List<Camiones> camiones = new ArrayList<Camiones>();
+			try {
+				camiones = camionDAO.getCamiones();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			request.setAttribute("lista", camiones);
+			dispatcher.forward(request, response);
+		}else {
+			PrintWriter pw= response.getWriter();
+			pw.println("No autorizado");
+			pw.close();
 		}
-
-		request.setAttribute("lista", camiones);
-		dispatcher.forward(request, response);
 
 	}
 

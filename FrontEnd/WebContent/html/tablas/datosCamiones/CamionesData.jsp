@@ -105,7 +105,7 @@ function sortTable(n) {
 							class="dropdown-item" href="http://localhost:8080/FrontEnd/CategoriasController">Categorias</a> 
 							<a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Tabla de distancias</a>
 							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/ViajesController">Viajes (Administrador)</a>
-							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosViajesAsignados/ViajesAsignadosData.jsp">Viajes (Chofer)</a>
+							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/ViajesAsignadosController">Viajes (Chofer)</a>
 							
 					</div></li>
 			</ul>

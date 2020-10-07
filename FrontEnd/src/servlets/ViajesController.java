@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import negocio.bll.NuevoViaje;
 import negocio.dao.factory.CamionesDAOFactory;
@@ -64,20 +66,27 @@ public class ViajesController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// requests datos viajes
-
-		// get de entrada -> populate viajes
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("html/tablas/datosViajes/ViajesData.jsp");
-		List<Viajes> viajes = new ArrayList<Viajes>();
-		ViajesDAO viajesDAO = ViajesDAOFactory.get("database");
-		try {
-			viajes = viajesDAO.getViajes();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		HttpSession session= (HttpSession) request.getSession();
+		if(session.getAttribute("perfil").equals("Admin")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("html/tablas/datosViajes/ViajesData.jsp");
+			
+			List<Viajes> viajes = new ArrayList<Viajes>();
+			ViajesDAO viajesDAO = ViajesDAOFactory.get("database");
+			try {
+				viajes = viajesDAO.getViajes();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			// request.setAttribute("chofer_dni", 38555654);
+			request.setAttribute("lista", viajes);
+			dispatcher.forward(request, response);
+		}else {
+			PrintWriter pw= response.getWriter();
+			pw.println("No autorizado");
+			pw.close();
 		}
-		// request.setAttribute("chofer_dni", 38555654);
-		request.setAttribute("lista", viajes);
-		dispatcher.forward(request, response);
+
+		
 	}
 
 	/**
@@ -174,8 +183,8 @@ public class ViajesController extends HttpServlet {
 		// y retornando lista de parametros
 		NuevoViaje n = new NuevoViaje();
 		n.addViaje(viaje);
+		response.sendRedirect("http://localhost:8080/FrontEnd/ViajesController");
 		
-
 	}
 
 }

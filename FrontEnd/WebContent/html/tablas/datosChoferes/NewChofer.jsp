@@ -41,7 +41,6 @@
 </script>
 
 <header>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="http://localhost:8080/FrontEnd">Navbar</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -66,7 +65,7 @@
 							class="dropdown-item" href="http://localhost:8080/FrontEnd/CategoriasController">Categorias</a> 
 							<a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Tabla de distancias</a>
 							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/ViajesController">Viajes (Administrador)</a>
-							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosViajesAsignados/ViajesAsignadosData.jsp">Viajes (Chofer)</a>
+							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/ViajesAsignadosController">Viajes (Chofer)</a>
 							
 					</div></li>
 			</ul>

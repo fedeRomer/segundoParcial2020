@@ -27,7 +27,6 @@ $(document).ready(function() {
 </script>
 
 <header>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="http://localhost:8080/FrontEnd">Navbar</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -52,7 +51,7 @@ $(document).ready(function() {
 							class="dropdown-item" href="http://localhost:8080/FrontEnd/CategoriasController">Categorias</a> 
 							<a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosTablaDistancia/TablaDistanciaData.jsp">Tabla de distancias</a>
 							 <a class="dropdown-item" href="http://localhost:8080/FrontEnd/ViajesController">Viajes (Administrador)</a>
-							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/html/tablas/datosViajesAsignados/ViajesAsignadosData.jsp">Viajes (Chofer)</a>
+							  <a class="dropdown-item" href="http://localhost:8080/FrontEnd/ViajesAsignadosController">Viajes (Chofer)</a>
 							
 					</div></li>
 			</ul>
@@ -76,33 +75,37 @@ Cookie[] cookies = request.getCookies();
 	<h1>Viajes Asignados</h1>
 	
 	<table id="datatable" class="table table-striped table-bordered table-sm" style="width:100%">
-        <tr>
-			<td style="color: black">Camión</td>
-			<td style="color: black">Origen</td>
-			<td style="color: black">Destino</td>
-			<td style="color: black">Distancia</td>
-			<td style="color: black">Tiempo de Viaje (dias)</td>
-			<td style="color: black">Tanques De combustible</td>
-        </tr>
+		<tr>
+			<!-- <th class="th-sm" style="color: black">Chofer</th> -->
+			<th class="th-sm" style="color: black">Camión</th>
+			<th class="th-sm" style="color: black">Origen</th>
+			<th class="th-sm" style="color: black">Destino</th>
+			<th class="th-sm" style="color: black">Distancia (km)</th>
+			<th class="th-sm" style="color: black">Tiempo de Viaje (dias)</th>
+			<th class="th-sm" style="color: black">Tanques De combustible (cantidad)</th>
+			<th  style="color:black" colspan=2>Opciones</th>
+		</tr>
 
-        <c:forEach var="camiones" items="${lista}">
-        <form action="http://localhost:8080/FrontEnd/CamionesController" method="post" id="form">
-            <tr>
-            	
-                <td style="color:black" ><input type="text" name="marca" value="${camiones.marca}" ></td>
-                <td style="color:black" ><input type="text" name="modelo" value="${camiones.modelo}" ></td>
-                <td style="color:black" ><input type="text" name="dominio" value="${camiones.dominio}" ></td>
-                <td style="color:black" ><input type="number"  name="categoria" min="1" max="5" value="${camiones.categoria}" ></td>
-                <td style="color:black" ><input type="number"  name="cargaMaximaTn" min="1" max="99" value="${camiones.cargaMaximaTn}" ></td>
-                <td style="color:black" ><input type="number" name="litrosTanque" min="1" max="9999" value="${camiones.litrosTanque}" ></td>
-                <td style="color:black" ><input type="number" name="consumoLitrosKm" min="1" max="9999" value="${camiones.consumoLitrosKm}" ></td>
-                <td style="display:none"><input type="text" name="id" value="${camiones.idCamiones}" ></td>
-                <td style="color:black" > <button type="submit" class="btn btn-success" name="completar" value="completar">Marcar Completado</button> </td>
-                
-            </tr>
-            </form>
-        </c:forEach>
-    </table>
+		<c:forEach var="viajes" items="${lista}">
+		<form action="http://localhost:8080/FrontEnd/ViajesAsignadosController" method="post" id="form">
+           <tr>
+			
+			<!-- <td style="color:black"><c:out value="${viajes.chofer}" /></td> -->
+			<td style="color:black"><c:out value="${viajes.camion}" /></td>
+			<td style="color:black"><c:out value="${viajes.origen}" /></td>
+			<td style="color:black"><c:out value="${viajes.destino}" /></td>
+			<td style="color:black"><c:out value="${viajes.distancia}" /></td>
+			<td style="color:black"><c:out value="${viajes.tiempoDeViaje}" /></td>
+			<td style="color:black"><c:out value="${viajes.tanquesDeCombustible}" /></td>
+			 <td style="display:none"><input type="text" name="id" value="${viajes.idViaje}" ></td>
+			<td style="color:black" > <button type="submit" class="btn btn-success" name="eliminar" value="eliminar">Finalizar Viaje</button></td>
+			 
+			</tr>
+			</form>
+		</c:forEach>
+		
+	</table> 
+	
 
 </body>
 </html>

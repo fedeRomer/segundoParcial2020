@@ -10,6 +10,8 @@ public interface ViajesDAO {
 	public Boolean addViaje(Viajes o) throws SQLException;
 
 	public Boolean modifyViaje(Viajes o) throws SQLException;
+	
+	public Boolean deleteViaje(int id) throws SQLException;
 
 	public Viajes searchViaje(Viajes o) throws SQLException;
 

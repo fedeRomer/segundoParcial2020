@@ -103,6 +103,24 @@ public class ViajesDAOImpl implements ViajesDAO{
 		connection.close();
 		return viajesList;
 	}
+	@Override
+	public Boolean deleteViaje(int id) throws SQLException {
+		MySQL mySQL = new MySQL();
+		this.connection = mySQL.getConnection();
+		query = "DELETE FROM viajes WHERE id_viaje = ?";
+		preparedStatement = connection.prepareStatement(query);
+		preparedStatement.setInt(1, id);
+		int resultSet = preparedStatement.executeUpdate();
+		if (resultSet == 1) {
+			preparedStatement.close();
+			connection.close();
+			return true;
+		} else {
+			preparedStatement.close();
+			connection.close();
+			return false;
+		}
+	}
 	
 	
 	
