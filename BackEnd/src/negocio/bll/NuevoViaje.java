@@ -52,43 +52,52 @@ public class NuevoViaje {
 		destino.setIdProvincia(idDestino);
 		destino = provinciaDAO.searchProvincia(destino);
 
-		switch (destino.getProvincia()) 
-		{
-			case "Caba":
-				return origen.getCaba();
-			case "Cordoba":
-				return origen.getCordoba();
-			case "Corrientes":
-				return origen.getCorrientes();
-			case "Formosa":
-				return origen.getFormosa();
-			case "La Plata":
-				return origen.getLa_plata();
-			case "La Rioja":
-				return origen.getLa_rioja();
-			case "Mendoza":
-				return origen.getMendoza();
-			case "Neuquen":
-				return 	origen.getNeuquen();
-			default:
-				return -1;
+		switch (destino.getProvincia()) {
+		case "Caba":
+			return origen.getCaba();
+		case "Cordoba":
+			return origen.getCordoba();
+		case "Corrientes":
+			return origen.getCorrientes();
+		case "Formosa":
+			return origen.getFormosa();
+		case "La Plata":
+			return origen.getLa_plata();
+		case "La Rioja":
+			return origen.getLa_rioja();
+		case "Mendoza":
+			return origen.getMendoza();
+		case "Neuquen":
+			return origen.getNeuquen();
+		default:
+			return -1;
 		}
 	}
 
 	public int calcularTiempoDeViaje(int km) {
-		
-		if(km>0) {
-			km = km / 200;
-			return km;
-		}else {
+		int dias = -1;
+		if (km > 0) {
+			dias = km / 200;
+			return dias;
+		} else {
 			return -1;
 		}
 
 	}
 
-	public int calcularTanquesDeCombustible() {
-		return 0;
-
+	public int calcularTanquesDeCombustible(int distancia, int consumo,int tanqueLitros) {
+		/*
+			24 L/100Km
+			(800km / 350km)*24L
+			(800/100)*24 = cantidad de litros a consumir 
+			24*8?
+		 */
+		int tanquesAusar= 0;
+		
+		tanquesAusar = distancia/tanqueLitros;
+		
+		//(gastoFinal*tanque)/cantidadQueLleva
+		return (distancia*consumo)/100;
 	}
 
 }

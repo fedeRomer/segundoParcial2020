@@ -127,7 +127,7 @@ function sortTable(n) {
             <th class="th-sm" style="color:black" onclick="sortTable(3)">Categoria</th>
             <th class="th-sm" style="color:black" onclick="sortTable(4)">CargaMaximaTn</th>
             <th class="th-sm" style="color:black" onclick="sortTable(5)">LitrosTanque </th>
-            <th class="th-sm" style="color:black" onclick="sortTable(6)">ConsumoLitrosKm </th>
+            <th class="th-sm" style="color:black" onclick="sortTable(6)">ConsumoLitrosKm (Litros cada 100km)</th>
             <th  style="color:black" colspan=2>Opciones</th>
         </tr>
        </thead>

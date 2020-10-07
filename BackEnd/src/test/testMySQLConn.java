@@ -121,7 +121,7 @@ public class testMySQLConn {
 		//return camionesList;
 	
 	}
-/*
+
 	@Test
 	public void insertInto()  {
 		
@@ -171,7 +171,7 @@ public class testMySQLConn {
 			e.printStackTrace();
 		}
 	}
-	*/
+
 	/*
 	@Test
 	public void insertInto() throws SQLException  {

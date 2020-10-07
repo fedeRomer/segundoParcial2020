@@ -91,7 +91,7 @@ $(document).ready(function() {
             <td><input type="number" name="litrosTanque" min="1" max="9999" required></td>
           </tr>
           <tr>
-            <td>ConsumoLitrosKm</td>
+            <td>ConsumoLitrosKm (Litros cada 100km)</td>
             <td><input type="number" name="consumoLitrosKm" min="1" max="9999" required></td>
           </tr>
           <tr>
