@@ -1,8 +1,12 @@
 package util;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
+
+import test.testMySQLConn;
 
 public class MySQL {
 
@@ -13,14 +17,20 @@ public class MySQL {
 
 	private Connection connection = null;
 
-	public MySQL() {
-		Properties properties = new Properties();
-		//TODO: tomar desde properties
-
+	public MySQL() throws IOException {
+/*
 		this.driver = "com.mysql.jdbc.Driver";
 		this.url = "jdbc:mysql://localhost/testdb";
 		this.username = "root";
 		this.password = "1234";
+*/
+		Properties p = new Properties();
+		InputStream in = testMySQLConn.class.getClassLoader().getResourceAsStream("db.properties");
+		p.load(in);
+		this.url =p.getProperty("db.url");
+		this.username=p.getProperty("db.user");
+		this.password=p.getProperty("db.password");
+		this.driver=p.getProperty("db.driver");
 	}
 
 	public Connection getConnection() {
@@ -46,5 +56,6 @@ public class MySQL {
 			}
 		}
 	}
+	
 
 }

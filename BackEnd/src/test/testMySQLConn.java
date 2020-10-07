@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -15,6 +17,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Properties;
 
 import org.junit.Test;
 
@@ -25,6 +28,7 @@ import util.MySQL;
 
 public class testMySQLConn {
 
+	
 	@Test
 	public void testQuery() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
@@ -91,7 +95,7 @@ public class testMySQLConn {
 
 	}
 	@Test
-	public void selectAllCamiones() throws SQLException {
+	public void selectAllCamiones() throws SQLException, IOException {
 		PreparedStatement preparedStatement;
 		CallableStatement callableStatement;
 		String query;
@@ -119,9 +123,18 @@ public class testMySQLConn {
 		preparedStatement.close();
 		connection.close();
 		//return camionesList;
-	
 	}
-
+		@Test
+		public void getProperties() throws IOException {
+			
+			Properties prop = new Properties();
+			InputStream in = testMySQLConn.class.getClassLoader().getResourceAsStream("db.properties");
+			prop.load(in);
+			
+			System.out.println(prop.getProperty("db.url"));
+		}
+	
+/*
 	@Test
 	public void insertInto()  {
 		
@@ -171,7 +184,7 @@ public class testMySQLConn {
 			e.printStackTrace();
 		}
 	}
-
+*/
 	/*
 	@Test
 	public void insertInto() throws SQLException  {
@@ -221,7 +234,7 @@ public class testMySQLConn {
 		}
 	}*/
 	@Test
-	public void insertIntoProv() throws SQLException {
+	public void insertIntoProv() throws SQLException, IOException {
 		// INSERT INTO provincias (provincia) VALUES (?);
 		PreparedStatement preparedStatement;
 		CallableStatement callableStatement;

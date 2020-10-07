@@ -1,5 +1,6 @@
 package negocio.dao.impl;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +22,7 @@ public class CamionesDAOImpl implements CamionesDAO {
 	private Statement statement;
 
 	@Override
-	public Boolean addCamion(Camiones o) throws SQLException {
+	public Boolean addCamion(Camiones o) throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "INSERT INTO camiones ("
@@ -48,7 +49,7 @@ public class CamionesDAOImpl implements CamionesDAO {
 	}
 
 	@Override
-	public Boolean modifyCamion(Camiones o) throws SQLException {
+	public Boolean modifyCamion(Camiones o) throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "UPDATE camiones SET marca = ? ,modelo = ? ,dominio = ? ,categoria = ? ,carga_maxima_tn = ? ,litros_tanque = ? ,consumo_litros_km = ? WHERE id_camiones = ?";
@@ -74,7 +75,7 @@ public class CamionesDAOImpl implements CamionesDAO {
 	}
 
 	@Override
-	public Camiones searchCamion(Camiones o) throws SQLException {
+	public Camiones searchCamion(Camiones o) throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "SELECT * FROM camiones WHERE id_camiones = ?";
@@ -99,7 +100,7 @@ public class CamionesDAOImpl implements CamionesDAO {
 	}
 
 	@Override
-	public List<Camiones> getCamiones() throws SQLException {
+	public List<Camiones> getCamiones() throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "SELECT * FROM Camiones";
@@ -125,7 +126,7 @@ public class CamionesDAOImpl implements CamionesDAO {
 	}
 
 	@Override
-	public Boolean deleteCamion(int id) throws SQLException {
+	public Boolean deleteCamion(int id) throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "DELETE FROM Camiones WHERE id_camiones = ?";

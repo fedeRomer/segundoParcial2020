@@ -2,6 +2,7 @@ package negocio.dao.impl;
 
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -24,7 +25,7 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 	private Statement statement;
 
 	@Override
-	public Boolean addChofer(Choferes o) throws SQLException {
+	public Boolean addChofer(Choferes o) throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "INSERT INTO choferes (" + "nombre,apellido,dni,fecha_de_nacimiento,categoria,telefono" + ") "
@@ -49,7 +50,7 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 	}
 
 	@Override
-	public Boolean modifyChofer(Choferes o) throws SQLException {
+	public Boolean modifyChofer(Choferes o) throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "UPDATE choferes "
@@ -76,7 +77,7 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 	}
 
 	@Override
-	public Choferes searchChofer(Choferes o) throws SQLException {
+	public Choferes searchChofer(Choferes o) throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "SELECT * FROM choferes WHERE id_choferes = ?";
@@ -100,7 +101,7 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 	}
 
 	@Override
-	public List<Choferes> getChoferes() throws SQLException {
+	public List<Choferes> getChoferes() throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "SELECT * FROM choferes";
@@ -125,7 +126,7 @@ public class ChoferesDAOImpl implements ChoferesDAO {
 	}
 
 	@Override
-	public Boolean deleteChofer(int id) throws SQLException {
+	public Boolean deleteChofer(int id) throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "DELETE FROM Choferes WHERE id_choferes = ?";

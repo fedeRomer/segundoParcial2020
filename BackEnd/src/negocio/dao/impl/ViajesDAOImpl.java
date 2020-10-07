@@ -1,5 +1,6 @@
 package negocio.dao.impl;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,7 +29,7 @@ public class ViajesDAOImpl implements ViajesDAO{
 	
 	
 	@Override
-	public Boolean addViaje(Viajes o) throws SQLException {
+	public Boolean addViaje(Viajes o) throws SQLException, IOException {
 
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
@@ -64,7 +65,7 @@ public class ViajesDAOImpl implements ViajesDAO{
 		return null;
 	}
 	@Override
-	public List<Viajes> getViajes() throws SQLException {
+	public List<Viajes> getViajes() throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "SELECT * FROM viajes";
@@ -104,7 +105,7 @@ public class ViajesDAOImpl implements ViajesDAO{
 		return viajesList;
 	}
 	@Override
-	public Boolean deleteViaje(int id) throws SQLException {
+	public Boolean deleteViaje(int id) throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "DELETE FROM viajes WHERE id_viaje = ?";

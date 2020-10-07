@@ -1,5 +1,6 @@
 package negocio.bll;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 
@@ -22,7 +23,7 @@ public class NuevoViaje {
 
 	ViajesDAO viajeDAO = ViajesDAOFactory.get("database");
 
-	public Boolean addViaje(Viajes o) throws SQLException {
+	public Boolean addViaje(Viajes o) throws SQLException, IOException {
 
 		if (this.validateCategoria(this.getChofer(o.getChofer()), this.getCamion(o.getCamion()))) {
 			o.setDistancia(this.calcularDistancia(o.getOrigen(), o.getDestino()));
@@ -44,7 +45,7 @@ public class NuevoViaje {
 
 	}
 
-	public Choferes getChofer(int id) throws SQLException {
+	public Choferes getChofer(int id) throws SQLException, IOException {
 		ChoferesDAO choferDAO = ChoferesDAOFactory.get("database");
 
 		this.chofer.setIdChoferes(id);
@@ -52,7 +53,7 @@ public class NuevoViaje {
 		return this.chofer;
 	}
 
-	public Camiones getCamion(int id) throws SQLException {
+	public Camiones getCamion(int id) throws SQLException, IOException {
 		CamionesDAO camionDAO = CamionesDAOFactory.get("database");
 
 		this.camion.setIdCamiones(id);
@@ -61,7 +62,7 @@ public class NuevoViaje {
 
 	}
 
-	public int calcularDistancia(int idOrigen, int idDestino) throws SQLException {
+	public int calcularDistancia(int idOrigen, int idDestino) throws SQLException, IOException {
 		ProvinciasDAO provinciaDAO = ProvinciasDAOFactory.get("database");
 		Provincias origen = new Provincias();
 		Provincias destino = new Provincias();

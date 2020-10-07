@@ -4,6 +4,7 @@ import negocio.dao.interfaces.UsuarioDAO;
 import negocio.dto.Usuario;
 import util.MySQL;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
@@ -14,7 +15,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	private Statement statement;
 
 	@Override
-	public Usuario getUsuario(String username, String password) throws SQLException {
+	public Usuario getUsuario(String username, String password) throws SQLException, IOException {
 
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();

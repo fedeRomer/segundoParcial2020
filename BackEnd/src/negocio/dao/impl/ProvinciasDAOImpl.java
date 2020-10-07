@@ -1,5 +1,6 @@
 package negocio.dao.impl;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,7 +37,7 @@ public class ProvinciasDAOImpl implements ProvinciasDAO {
 	}
 
 	@Override
-	public Provincias searchProvincia(Provincias o) throws SQLException {
+	public Provincias searchProvincia(Provincias o) throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "SELECT * FROM provincias WHERE id_provincia = ?";
@@ -63,7 +64,7 @@ public class ProvinciasDAOImpl implements ProvinciasDAO {
 	}
 
 	@Override
-	public List<Provincias> getProvincias() throws SQLException {
+	public List<Provincias> getProvincias() throws SQLException, IOException {
 		MySQL mySQL = new MySQL();
 		this.connection = mySQL.getConnection();
 		query = "SELECT * FROM provincias";
